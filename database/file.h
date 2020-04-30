@@ -16,6 +16,7 @@ enum modes {
 
 FILE* open_course_db(int mode);
 int insert_course_record(FILE *db, struct course *record);
+ load_courses
 
 void close_db(FILE *db);
 

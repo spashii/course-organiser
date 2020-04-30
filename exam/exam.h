@@ -11,6 +11,6 @@ struct exam{
 };
 
 struct exam* init_exam(void);
-void print_course(struct exam* foo);
+void print_exam(struct exam* foo);
 
 #endif
