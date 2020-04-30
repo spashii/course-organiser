@@ -2,6 +2,7 @@
 #define _COURSE_H_
 
 struct course {
+    long id;
     char code[16];
     char name[64];
     float credit;
@@ -15,9 +16,5 @@ void set_course(struct course *foo, char code[], char name[], float credit);
 struct course *input_course(struct course *foo);
 // prints a course object
 void print_course(struct course *foo);
-
-struct course_list {
-    struct course *head;
-};
 
 #endif

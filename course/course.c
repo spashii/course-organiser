@@ -8,25 +8,26 @@
 
 struct course* init_course(void) {
     struct course* new = (struct course*)malloc(sizeof(struct course));
+    new->id = get_time();
     strcpy(new->code, "");
     strcpy(new->name, "");
     new->credit = 0.0;
     return new;
 }
 
-void print_course(struct course* foo) {
-    printf("Code    : %s\n", foo->code);
-    printf("Name    : %s\n", foo->name);
-    printf("Credits : %.1f\n", foo->credit);
+void print_course(struct course* c) {
+    printf("Code    : %s\n", c->code);
+    printf("Name    : %s\n", c->name);
+    printf("Credits : %.1f\n", c->credit);
 }
 
-void set_course(struct course* foo, char code[], char name[], float credit) {
-    strcpy(foo->code, code);
-    strcpy(foo->name, name);
-    foo->credit = credit;
+void set_course(struct course* c, char code[], char name[], float credit) {
+    strcpy(c->code, code);
+    strcpy(c->name, name);
+    c->credit = credit;
 }
 
-struct course* input_course(struct course* foo) {
+struct course* input_course(struct course* c) {
     char code[16];
     char name[64];
     float credit;
@@ -36,6 +37,6 @@ struct course* input_course(struct course* foo) {
     strcpy(name, s_readline(64));
     printf("Course Credits? ");
     scanf("%f", &credit);
-    set_course(foo, code, name, credit);
-    return foo;
+    set_course(c, code, name, credit);
+    return c;
 }

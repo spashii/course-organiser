@@ -1,7 +1,10 @@
+#define _XOPEN_SOURCE 700
+
 #include "util.h"
 
 #include <malloc.h>
 #include <stdio.h>
+#include <time.h>
 
 char *readLine(void) {
     char *line = NULL;
@@ -33,4 +36,11 @@ char *s_readline(int size) {
     *(line + index + 1) = '\0';
     fflush(stdin);
     return line;
+}
+
+long get_time(){
+    time_t now = time(NULL);
+    struct tm *temp;
+    temp = localtime(&now);
+    return now;
 }

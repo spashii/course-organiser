@@ -3,5 +3,6 @@
 
 char *readLine(void);
 char *s_readline(int size);
+long get_time();
 
 #endif
