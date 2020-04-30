@@ -1,6 +1,8 @@
 #include "exam.h"
 
 #include <stdio.h>
+#include<string.h>
+#include <malloc.h>
 #include <time.h>
 
 #include "../util/util.h"

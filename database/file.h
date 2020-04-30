@@ -3,7 +3,8 @@
 
 #include "../course/course.h"
 #include "../exam/exam.h"
-#include "../info/info.h"
+//#include "../info/info.h"
+#include "../list/list.h"
 
 #include <stdio.h>
 
@@ -16,7 +17,8 @@ enum modes {
 
 FILE* open_course_db(int mode);
 int insert_course_record(FILE *db, struct course *record);
- load_courses
+struct list* load_course_db();
+
 
 void close_db(FILE *db);
 
