@@ -4,10 +4,11 @@
 struct course {
     long id;
     char code[16];
-    char name[64];
+    char name[128];
     float credit;
 };
 
+    
 // initializes a course object
 struct course *init_course(void);
 // course object setter
@@ -18,3 +19,5 @@ struct course *input_course(struct course *foo);
 void print_course(struct course *foo);
 
 #endif
+
+// asdfasdf asdfasdfas asdfa 

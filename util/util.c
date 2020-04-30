@@ -4,6 +4,7 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 char *readLine(void) {
@@ -27,18 +28,24 @@ char *readLine(void) {
 }
 
 char *s_readline(int size) {
-    char *line = malloc(sizeof(size));
+    char *line = malloc(size);
     int ch;
-    int index;
-    for (index = 0; ((ch = getchar()) != '\n' && ch != EOF) && (index + 1 < size); index++) {
-        *(line + index) = ch;
+    int index=0;
+    while (index + 1 < size && ((ch = getchar()) != '\n' && ch != EOF)) {
+        line[index] = (char)ch;
+        line[index + 1] = '\0';
+        index++;
     }
-    *(line + index + 1) = '\0';
-    fflush(stdin);
     return line;
 }
 
-long get_time(){
+void flush_stdin_buffer() {
+    int ch;
+    while (ch = getchar() != '\n') {
+    }
+}
+
+long get_time() {
     time_t now = time(NULL);
     struct tm *temp;
     temp = localtime(&now);
