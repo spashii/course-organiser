@@ -10,7 +10,6 @@
 int main() {
     FILE *db;
     struct course *new = input_course(init_course());
-    // struct course new = {12345, "111111111111111", "77777777777777777thjrjurtj7777777777777777777777777777thjrjurtj5", 3.3};
     db = open_course_db(WRITE);
     insert_course_record(db, new);
     close_db(db);
@@ -24,19 +23,17 @@ int main() {
     //     }
     // }
 
+
     struct list *courses = load_course_db();
-
     struct list_node *test = courses->head;
-
     while(test){
         printf("id: %ld\n", ((struct course *)(test->data))->id);
         test = test->next;
     }
-
     close_db(db);
 
-    
-    //print_course(input_course(init_course()));
+
+        //print_course(input_course(init_course()));
     // struct course *new = init_course();
     // new = input_course(new);
     // print_course(new);
