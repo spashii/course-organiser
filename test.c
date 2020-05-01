@@ -8,11 +8,11 @@
 #include "list/list.h"
 
 int main() {
-    FILE *db;
-    struct course *new = input_course(init_course());
-    db = open_course_db(WRITE);
-    insert_course_record(db, new);
-    close_db(db);
+    // FILE *db;
+    // struct course *new = input_course(init_course());
+    // db = open_course_db(WRITE);
+    // insert_course_record(db, new);
+    // close_db(db);
 
     // struct course *temp = init_course();
     // db = open_course_db(READ);
@@ -27,10 +27,11 @@ int main() {
     struct list *courses = load_course_db();
     struct list_node *test = courses->head;
     while(test){
-        printf("id: %ld\n", ((struct course *)(test->data))->id);
+        printf("%ld;", ((struct course *)(test->data))->id);
+        printf("%s\n", ((struct course *)(test->data))->code);
         test = test->next;
     }
-    close_db(db);
+    
 
 
         //print_course(input_course(init_course()));

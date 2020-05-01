@@ -8,18 +8,17 @@
 
 #include <stdio.h>
 
-// course related
-
 enum modes {
     READ,
     WRITE,
 };
 
 FILE* open_course_db(int mode);
-int insert_course_record(FILE *db, struct course *record);
+void close_db(FILE* db);
+
+int insert_course_db(struct course *record);
 struct list* load_course_db();
 
 
-void close_db(FILE *db);
 
 #endif
