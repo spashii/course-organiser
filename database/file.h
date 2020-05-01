@@ -9,15 +9,24 @@
 
 #include <stdio.h>
 
-enum modes {
+enum mode {
     READ,
     WRITE,
+    APPEND,
+    OVERWRITE
 };
 
-FILE* open_course_db(int mode);
-void close_db(FILE* db);
+enum db_name {
+    COURSE_DB,
+    COURSE_DB_BKP
+};
 
-int insert_course_db(struct course *record);
+FILE* open_db(enum db_name db, enum mode m);
+void close_db(FILE* db);
+void copy_db(enum db_name db_dest, enum db_name db_src, enum mode write_mode);
+
+int insert_course_db(struct course* record);
 struct course_list* load_course_db();
+void save_course_db(struct course_list* courses);
 
 #endif

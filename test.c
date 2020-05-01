@@ -9,7 +9,6 @@
 // #include "list/list.h"
 
 int main() {
-    
     // insert_course_db(set_course(init_course(), "cod1", "", 1.0));
     // insert_course_db(set_course(init_course(), "cod2", "", 1.0));
     // insert_course_db(set_course(init_course(), "cod3", "", 1.0));
@@ -25,10 +24,24 @@ int main() {
     //     }
     // }
 
-
     struct course_list *courses = load_course_db();
-    struct course_list_node *test = courses->head;
-    while(test){
+    struct course_list_node *test;
+
+    test = courses->head;
+    while (test) {
+        printf("%ld;", (test->data)->id);
+        printf("%s\n", (test->data)->code);
+        test = test->next;
+    }
+
+    insert_course_list(courses, input_course(init_course()));
+    
+    save_course_db(courses);
+
+    courses = load_course_db();
+
+    test = courses->head;
+    while (test) {
         printf("%ld;", (test->data)->id);
         printf("%s\n", (test->data)->code);
         test = test->next;

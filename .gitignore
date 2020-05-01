@@ -1,5 +1,7 @@
 **/*.out
 **/*.db
+**/*.bkp
+
 test
 
 .vscode
