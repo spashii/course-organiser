@@ -13,6 +13,6 @@ struct list {
 };
 
 struct list* init_list();
-void insert_list(struct list *l, void *ptr);
+void insert_list(struct list *l, void *data, size_t data_size);
 
 #endif
