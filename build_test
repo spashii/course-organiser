@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc course/*.c database/*.c exam/*.c info/*.c list/*.c util/*.c test.c && ./a.out
+gcc -o test course/*.c course_list/*.c database/*.c exam/*.c info/*.c list/*.c util/*.c test.c && ./test

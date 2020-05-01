@@ -5,22 +5,17 @@
 #include <string.h>
 
 #include "../course/course.h"
+#include "../course_list/course_list.h"
 
 FILE* open_course_db(int mode) {
-    FILE* db = (FILE*)malloc(sizeof(FILE));
-    if (db) {
-        switch (mode) {
-            case READ:
-                db = fopen("database/course.db", "rb");
-                break;
-            case WRITE:
-                db = fopen("database/course.db", "ab");
-                break;
-            default:
-                db = NULL;
-                break;
-        }
-        return db;
+    FILE* db;
+    switch (mode) {
+        case READ:
+            db = fopen("database/course.db", "rb");
+            return db;
+        case WRITE:
+            db = fopen("database/course.db", "ab");
+            return db;
     }
     return NULL;
 }
@@ -43,13 +38,13 @@ int insert_course_db(struct course* record) {
     return -1;
 }
 
-struct list* load_course_db() {
-    struct list* courses = init_list();
+struct course_list* load_course_db() {
+    struct course_list* courses = init_course_list();
     FILE* db = open_course_db(READ);
     if (db) {
         struct course* temp = init_course();
         while (fread(temp, sizeof(struct course), 1, db)) {
-            insert_list(courses, temp, sizeof(struct course));
+            insert_course_list(courses, temp);
             memset(temp, 0, sizeof(struct course));
         }
         close_db(db);
@@ -57,4 +52,3 @@ struct list* load_course_db() {
     }
     return NULL;
 }
-

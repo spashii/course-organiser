@@ -6,7 +6,7 @@
 
 #include "../util/util.h"
 
-struct course* init_course(void) {
+struct course* init_course() {
   struct course* new = (struct course*)malloc(sizeof(struct course));
   new->id = get_time();
   strncpy(new->code, "", 16);
@@ -22,10 +22,11 @@ void print_course(struct course* c) {
   printf("Credits : %.1f\n", c->credit);
 }
 
-void set_course(struct course* c, char code[], char name[], float credit) {
+struct course* set_course(struct course* c, char code[], char name[], float credit) {
   strncpy(c->code, code, 16);
   strncpy(c->name, name, 128);
   c->credit = credit;
+  return c;
 }
 
 struct course* input_course(struct course* c) {
