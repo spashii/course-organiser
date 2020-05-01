@@ -3,8 +3,9 @@
 #include "course/course.h"
 // #include "exam/exam.h"
 #include "database/file.h"
-#include "info/info.h"
+// #include "info/info.h"
 #include "util/util.h"
+#include "list/list.h"
 
 int main() {
     FILE *db;
@@ -14,13 +15,22 @@ int main() {
     insert_course_record(db, new);
     close_db(db);
 
-    struct course *temp = init_course();
-    db = open_course_db(READ);
-    if (db) {
-        while (fread(temp, sizeof(struct course), 1, db)) {
-            if (temp)
-                print_course(temp);
-        }
+    // struct course *temp = init_course();
+    // db = open_course_db(READ);
+    // if (db) {
+    //     while (fread(temp, sizeof(struct course), 1, db)) {
+    //         if (temp)
+    //             print_course(temp);
+    //     }
+    // }
+
+    struct list *courses = load_course_db();
+
+    struct list_node *test = courses->head;
+
+    while(test){
+        printf("id: %ld\n", ((struct course *)(test->data))->id);
+        test = test->next;
     }
 
     close_db(db);
