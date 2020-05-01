@@ -35,7 +35,7 @@ struct list* load_course_db(){
   struct course *temp = init_course();
   while(db){
     if(fread(temp, sizeof(struct course), 1, db)){
-      insert_list(courses, temp);
+      insert_list(courses, (void*)temp);
     }
   }
   return courses;

@@ -29,7 +29,7 @@ int main() {
     struct list_node *test = courses->head;
 
     while(test){
-        printf("id: %d\n", ((struct course *)(test->data))->id);
+        printf("id: %ld\n", ((struct course *)(test->data))->id);
         test = test->next;
     }
 
