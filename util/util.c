@@ -51,3 +51,7 @@ long get_time() {
     temp = localtime(&now);
     return now;
 }
+
+void nl(){
+    printf("\n");
+}

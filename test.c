@@ -15,40 +15,63 @@ int main() {
     // insert_course_db(set_course(init_course(), "cod4", "", 1.0));
     // insert_course_db(set_course(init_course(), "cod5", "", 1.0));
 
-    // struct course *temp = init_course();
-    // db = open_course_db(READ);
-    // if (db) {
-    //     while (fread(temp, sizeof(struct course), 1, db)) {
-    //         if (temp)
-    //             print_course(temp);
-    //     }
+    // // struct course *temp = init_course();
+    // // db = open_course_db(READ);
+    // // if (db) {
+    // //     while (fread(temp, sizeof(struct course), 1, db)) {
+    // //         if (temp)
+    // //             print_course(temp);
+    // //     }
+    // // }
+
+    // struct course_list *courses = load_course_db();
+    // struct course_list_node *test;
+
+    // test = courses->head;
+    // while (test) {
+    //     printf("%ld;", (test->data)->id);
+    //     printf("%s\n", (test->data)->code);
+    //     test = test->next;
     // }
 
-    struct course_list *courses = load_course_db();
-    struct course_list_node *test;
-
-    test = courses->head;
-    while (test) {
-        printf("%ld;", (test->data)->id);
-        printf("%s\n", (test->data)->code);
-        test = test->next;
-    }
-
-    insert_course_list(courses, input_course(init_course()));
+    // insert_course_list(courses, input_course(init_course()));
     
-    save_course_db(courses);
+    // save_course_db(courses);
 
-    courses = load_course_db();
+    // courses = load_course_db();
 
-    test = courses->head;
-    while (test) {
-        printf("%ld;", (test->data)->id);
-        printf("%s\n", (test->data)->code);
-        test = test->next;
+    // test = courses->head;
+    // while (test) {
+    //     printf("%ld;", (test->data)->id);
+    //     printf("%s\n", (test->data)->code);
+    //     test = test->next;
+    // }
+
+    // //print_course(input_course(init_course()));
+    // // struct course *new = init_course();
+    // // new = input_course(new);
+    // // print_course(new);
+    // struct course *c1 = init_course();
+    // c1 = input_course(c1);
+    // print_course(c1);
+
+    // insert_course_db(c1);
+
+    // FILE *db = open_db(COURSE_DB, READ);
+
+    
+
+    // fread(c, sizeof(struct course), 1, db);
+
+    // print_course(c);
+
+    struct course_list *courses = load_course_db();
+
+    struct course_list_node *trav = courses->head;
+    while(trav){
+        print_course(trav->data);
+        trav = trav->next;
     }
 
-    //print_course(input_course(init_course()));
-    // struct course *new = init_course();
-    // new = input_course(new);
-    // print_course(new);
+    // save_course_db(courses);
 }

@@ -10,7 +10,7 @@ struct course_list_node {
 
 struct course_list_node *init_course_list_node(struct course *data);
 
-struct course_list{
+struct course_list {
     struct course_list_node *head;
 };
 
