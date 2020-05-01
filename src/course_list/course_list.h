@@ -12,6 +12,7 @@ struct course_list_node *init_course_list_node(struct course *data);
 
 struct course_list {
     struct course_list_node *head;
+    unsigned int size;
 };
 
 struct course_list *init_course_list();

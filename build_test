@@ -1,2 +1,0 @@
-#!/bin/bash
-gcc -o test course/*.c course_list/*.c database/*.c exam/*.c app/*.c list/*.c util/*.c course_organiser.c

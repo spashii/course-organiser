@@ -1,7 +1,9 @@
 **/*.out
+**/*.o
 **/*.db
 **/*.bkp
 
+redundant
 test
 
 .vscode

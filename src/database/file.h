@@ -3,8 +3,8 @@
 
 #include "../course/course.h"
 #include "../course_list/course_list.h"
-#include "../exam/exam.h"
-// #include "../info/info.h"
+// #include "../exam/exam.h"
+#include "../app/info.h"
 // #include "../list/list.h"
 
 #include <stdio.h>

@@ -41,14 +41,12 @@ char *s_readline(int size) {
 
 void flush_stdin_buffer() {
     int ch;
-    while (ch = getchar() != '\n') {
+    while ((ch = getchar() != '\n')) {
     }
 }
 
 long get_time() {
     time_t now = time(NULL);
-    struct tm *temp;
-    temp = localtime(&now);
     return now;
 }
 

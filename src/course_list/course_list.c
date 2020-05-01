@@ -18,6 +18,7 @@ struct course_list_node *init_course_list_node(struct course *data) {
 struct course_list *init_course_list() {
     struct course_list *new = (struct course_list *)malloc(sizeof(struct course_list));
     new->head = NULL;
+    new->size = 0;
     return new;
 }
 
@@ -26,4 +27,5 @@ void insert_course_list(struct course_list *l, struct course *data) {
     struct course_list_node *save = l->head;
     insert->next = save;
     l->head = insert;
+    l->size += 1;
 }

@@ -17,6 +17,8 @@ struct course *input_course(struct course *foo);
 // prints a course object
 void print_course(struct course *foo);
 
+// int compare_course_code(const void *a, const void *b);
+// int compare_course_name(const void *a, const void *b);
+
 #endif
 
-// asdfasdf asdfasdfas asdfa
