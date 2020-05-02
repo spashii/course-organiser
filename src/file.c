@@ -9,18 +9,14 @@
 #include "course_list.h"
 
 char* get_db_path(enum db_name db) {
-    char file_path = malloc(128);
     switch (db) {
         case COURSE_DB:
-            strncpy(file_path, "database/course.db", 128);
-            break;
+            return "database/course.db";
         case COURSE_DB_BKP:
-            strncpy(file_path, "database/course.db.bkp", 128);
-            break;
+            return "database/course.db.bkp";
         default:
-            strncpy(file_path, "", 128);
+            return "";
     }
-    return file_path;
 }
 
 FILE* open_db(enum db_name db_n, enum mode m) {
