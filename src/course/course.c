@@ -46,20 +46,10 @@ struct course* input_course(struct course* c) {
     return c;
 }
 
-int compare_course_code(const void *a, const void *b) {
-    struct course *left = *(struct course **)a;
-    struct course *right = *(struct course **)b;
-    return strcmp(left->code, right->code);
-}
+// int compare_course_code(const void* a, const void* b) {
+//     return strncmp(((struct course*)a)->code, ((struct course*)b)->code, 16);
+// }
 
-int compare_course_name(const void *a, const void *b) {
-    struct course *left = *(struct course **)a;
-    struct course *right = *(struct course **)b;
-    return strcmp(left->name, right->name);
-}
-
-int compare_course_credit(const void *a, const void *b) {
-    struct course *left = *(struct course **)a;
-    struct course *right = *(struct course **)b;
-    return left->credit - right->credit;
-}
+// int compare_course_name(const void* a, const void* b) {
+//     return strncmp(((struct course*)a)->name, ((struct course*)a)->name, 128);
+// }

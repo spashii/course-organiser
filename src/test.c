@@ -10,12 +10,11 @@
 #include "util/util.h"
 // #include "list/list.h"
 
-void** course_index;
-int course_index_size;
+struct course** course_index;
 
 int main() {
-     //insert_course_db(set_course(init_course(), "zzzz", "names23232", 100));
-    // insert_course_db(set_course(init_course(), "a..", "eggg", 1.5));
+    //  insert_course_db(set_course(init_course(), "zzzz", "names23232", 1.6));
+    // insert_course_db(set_course(init_course(), "mmmmcod2", "eary", 1.0));
     // insert_course_db(set_course(init_course(), "rrrrcod3", "salad ", 1.0));
     // insert_course_db(set_course(init_course(), "wwwwwwcod4", "hello uiop", 1.0));
     // insert_course_db(set_course(init_course(), "dfgh dcod5", "312zzzzzzsdfa", 1.0));
@@ -78,9 +77,7 @@ int main() {
     // load_info();
     // printf("%u, %u\n", 0, APP_INFO.course_count);
 
-    struct course_list* courses = load_course_db();
-
-    sort_course_index(COURSE_NAME);
+    struct course_list *courses = load_course_db();
 
     make_course_index(courses);
 
@@ -94,19 +91,13 @@ int main() {
 
     // save_course_db(courses);
 
-    // sort_course_index(COURSE_CREDIT);
+    // int i = 0;
+    // for (i = 0; i < courses->size; i++) {
+    //     print_course(course_index[i]);
+    // }
 
-    int i = 0;
-    for (i = 0; i < courses->size; i++) {
-        print_course(course_index[i]);
-        printf("%d", course_index_size);
-    }
-
-    // print_course(course_index[3]);
-    // print_course(course_index[2]);
-    // printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
+    print_course(course_index[3]);
+    print_course(course_index[2]);
+    printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
     // printf("%d", compare_course_code(course_index[0], course_index[1]));
-    //     qs_swap_course_index(&course_index[3], &course_index[2]);
-    //     print_course(course_index[3]);
-    //     print_course(course_index[2]);
 }
