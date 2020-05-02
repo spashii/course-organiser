@@ -4,10 +4,14 @@
 #include "course.h"
 #include "course_list.h"
 
-// an array of void pointers which we
-// will use to store struct course ptrs
-extern void **course_index;
-extern int course_index_size;
+struct course_index {
+    // an array of void pointers which we
+    // will use to store struct course ptrs
+    void **c;
+    unsigned int size;
+};
+
+extern struct course_index *course_index;
 
 enum sort_by {
     COURSE_CODE,
@@ -16,8 +20,11 @@ enum sort_by {
 };
 
 void init_course_index();
-void make_course_index();
-void sort_course_index(enum sort_by sort_by_this);
+void load_course_index();
+void sort_course_index(enum sort_by field_name);
+void free_course_index();
+
+void make_course_index(enum sort_by field_name);
 
 int get_size_course_index();
 

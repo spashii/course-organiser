@@ -28,7 +28,6 @@ void free_course_list_node(struct course_list_node *node) {
 }
 
 void init_course_list() {
-    free_course_list();
     course_list = malloc(sizeof(struct course_list));
     course_list->head = NULL;
     course_list->size = 0;
