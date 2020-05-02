@@ -3,6 +3,8 @@
 #include <malloc.h>
 #include <stdio.h>
 
+#include "file.h"
+
 struct info APP_INFO;
 
 void init_info() {
@@ -10,10 +12,10 @@ void init_info() {
 }
 
 void load_info() {
-    FILE *i;
-    if ((i = fopen("info.db", "r"))) {
+    FILE *i = open_db(INFO_DB, READ);
+    if (i) {
         if (fread(&APP_INFO, sizeof(struct info), 1, i)) {
-            fclose(i);
+            close_db(i);
             return;
         }
     }
@@ -30,10 +32,10 @@ void dec_course_count() {
 }
 
 void save_info() {
-    FILE *i;
-    if ((i = fopen("info.db", "w"))) {
+    FILE *i = open_db(INFO_DB, OVERWRITE);
+    if (i) {
         if (fwrite(&APP_INFO, sizeof(struct info), 1, i)) {
-            fclose(i);
+            close_db(i);
             return;
         }
     }

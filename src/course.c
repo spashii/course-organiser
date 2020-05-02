@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../database/file.h"
-#include "../util/util.h"
+#include "file.h"
+#include "util.h"
 
 struct course *init_course() {
     struct course *new = (struct course *)malloc(sizeof(struct course));

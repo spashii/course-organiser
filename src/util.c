@@ -1,5 +1,3 @@
-#define _XOPEN_SOURCE 700
-
 #include "util.h"
 
 #include <malloc.h>

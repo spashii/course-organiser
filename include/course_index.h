@@ -1,8 +1,8 @@
 #ifndef _COURSE_INDEX_H_
 #define _COURSE_INDEX_H_
 
-#include "../course/course.h"
-#include "../course_list/course_list.h"
+#include "course.h"
+#include "course_list.h"
 
 // an array of void pointers which we
 // will use to store struct course ptrs

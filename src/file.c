@@ -4,18 +4,18 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../app/info.h"
-#include "../course/course.h"
-#include "../course_list/course_list.h"
+#include "info.h"
+#include "course.h"
+#include "course_list.h"
 
 char* get_db_path(enum db_name db) {
     char* file_path = malloc(128);
     switch (db) {
         case COURSE_DB:
-            strncpy(file_path, "course.db", 128);
+            strncpy(file_path, "database/course.db", 128);
             break;
         case COURSE_DB_BKP:
-            strncpy(file_path, "course.db.bkp", 128);
+            strncpy(file_path, "database/course.db.bkp", 128);
             break;
         default:
             strncpy(file_path, "", 128);

@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "course/course.h"
-#include "course_index/course_index.h"
-#include "course_list/course_list.h"
-// #include "exam/exam.h"
-#include "app/info.h"
-#include "database/file.h"
-#include "util/util.h"
-// #include "list/list.h"
+#include "course.h"
+#include "course_index.h"
+#include "course_list.h"
+#include "info.h"
+#include "file.h"
+#include "util.h"
 
 void** course_index;
 

@@ -1,7 +1,7 @@
 #ifndef _COURSE_LIST_H
 #define _COURSE_LIST_H
 
-#include "../course/course.h"
+#include "course.h"
 
 struct course_list_node {
     struct course *data;

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../course/course.h"
-#include "../course_list/course_list.h"
+#include "course.h"
+#include "course_list.h"
 
 void **course_index;
 int course_index_size;

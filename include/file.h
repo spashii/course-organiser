@@ -1,10 +1,6 @@
 #ifndef _FILE_H_
 #define _FILE_H_
 
-#include "../course/course.h"
-#include "../course_list/course_list.h"
-#include "../app/info.h"
-
 #include <stdio.h>
 
 enum mode {
@@ -16,7 +12,8 @@ enum mode {
 
 enum db_name {
     COURSE_DB,
-    COURSE_DB_BKP
+    COURSE_DB_BKP,
+    INFO_DB
 };
 
 FILE* open_db(enum db_name db, enum mode m);

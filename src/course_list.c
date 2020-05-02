@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../course/course.h"
-#include "../database/file.h"
+#include "course.h"
+#include "info.h"
+#include "file.h"
 
 struct course_list_node *init_course_list_node(struct course *data) {
     struct course_list_node *new = (struct course_list_node *)malloc(sizeof(struct course_list_node));
