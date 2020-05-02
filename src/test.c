@@ -10,7 +10,9 @@
 #include "util/util.h"
 // #include "list/list.h"
 
-struct course** course_index;
+long cmp(const void *a, const void *b){
+    return (strcmp((char *)a, (char *)b));
+}
 
 int main() {
     //  insert_course_db(set_course(init_course(), "zzzz", "names23232", 1.6));
@@ -79,9 +81,9 @@ int main() {
 
     struct course_list *courses = load_course_db();
 
-    make_course_index(courses);
+    // make_course_index(courses);
 
-    // struct course_list_node *trav = courses->head;
+    struct course_list_node *trav = courses->head;
     // while(trav){
     //     print_course(trav->data);
     //     trav = trav->next;
@@ -96,8 +98,14 @@ int main() {
     //     print_course(course_index[i]);
     // }
 
-    print_course(course_index[3]);
-    print_course(course_index[2]);
-    printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
+    // print_course(course_index[3]);
+    // print_course(course_index[2]);
+    // printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
     // printf("%d", compare_course_code(course_index[0], course_index[1]));
+
+    avltree_t *new = avltree_new(cmp);
+
+    avltree_insert(new, trav);
+
 }
+
