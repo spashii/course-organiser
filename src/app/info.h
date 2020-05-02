@@ -11,7 +11,7 @@ struct info{
     // unsigned int exam_count;
 };
 
-struct info APP_INFO;
+extern struct info APP_INFO;
 
 void init_info();
 void load_info();

@@ -3,6 +3,8 @@
 #include <malloc.h>
 #include <stdio.h>
 
+struct info APP_INFO;
+
 // void load_app_path(){
 //     APP_PATH = getenv("COURSE_ORGANISER_PATH");
 // }
@@ -18,7 +20,7 @@ void init_info() {
 
 void load_info() {
     FILE *i;
-    if ((i = fopen("app/info", "r"))) {
+    if ((i = fopen("info.db", "r"))) {
         if (fread(&APP_INFO, sizeof(struct info), 1, i)) {
             fclose(i);
             return;
@@ -38,7 +40,7 @@ void dec_course_count() {
 
 void save_info() {
     FILE *i;
-    if ((i = fopen("app/info", "w"))) {
+    if ((i = fopen("info.db", "w"))) {
         if (fwrite(&APP_INFO, sizeof(struct info), 1, i)) {
             fclose(i);
             return;

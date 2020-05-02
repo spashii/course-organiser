@@ -6,6 +6,8 @@
 
 #include "../util/util.h"
 
+struct course** course_index;
+
 struct course* init_course() {
     struct course* new = (struct course*)malloc(sizeof(struct course));
     new->id = get_time();
@@ -39,6 +41,8 @@ struct course* input_course(struct course* c) {
     scanf("%f", &credit);
     flush_stdin_buffer();
     set_course(c, code, name, credit);
+    free(name);
+    free(code);
     return c;
 }
 

@@ -10,6 +10,8 @@
 #include "util/util.h"
 // #include "list/list.h"
 
+struct course** course_index;
+
 int main() {
     //  insert_course_db(set_course(init_course(), "zzzz", "names23232", 1.6));
     // insert_course_db(set_course(init_course(), "mmmmcod2", "eary", 1.0));

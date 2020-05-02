@@ -3,7 +3,6 @@
 **/*.db
 **/*.bkp
 
-redundant
 test
 
 .vscode
