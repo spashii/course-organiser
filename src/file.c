@@ -9,7 +9,7 @@
 #include "course_list.h"
 
 char* get_db_path(enum db_name db) {
-    char* file_path = malloc(128);
+    char file_path = malloc(128);
     switch (db) {
         case COURSE_DB:
             strncpy(file_path, "database/course.db", 128);

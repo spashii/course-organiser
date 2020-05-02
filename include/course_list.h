@@ -9,16 +9,19 @@ struct course_list_node {
 };
 
 struct course_list_node *init_course_list_node(struct course *data);
+void free_course_list_node(struct course_list_node *node);
 
 struct course_list {
     struct course_list_node *head;
     unsigned int size;
 };
 
-struct course_list *init_course_list();
-void insert_course_list(struct course_list *l, struct course *data);
+extern struct course_list *course_list;
 
-struct course_list *load_course_db();
-void save_course_db(struct course_list *courses);
+void init_course_list();
+void load_course_list();
+void insert_course_list(struct course *data);
+void save_course_list();
+void free_course_list();
 
 #endif

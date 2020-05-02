@@ -19,8 +19,6 @@ void load_info() {
             return;
         }
     }
-    init_info();
-    save_info();
 }
 
 void inc_course_count() {

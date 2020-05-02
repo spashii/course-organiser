@@ -15,8 +15,8 @@ enum sort_by {
     COURSE_CREDIT
 };
 
-void init_course_index(struct course_list *l);
-void make_course_index(struct course_list *l);
+void init_course_index();
+void make_course_index();
 void sort_course_index(enum sort_by sort_by_this);
 
 int get_size_course_index();

@@ -9,6 +9,7 @@
 #include "util.h"
 
 void** course_index;
+struct course_list *course_list;
 
 int main() {
     //  insert_course_db(set_course(init_course(), "fabrez", "namfifa 12323es23232", 10));
@@ -75,11 +76,11 @@ int main() {
     // load_info();
     // printf("%u, %u\n", 0, APP_INFO.course_count);
 
-    struct course_list *courses = load_course_db();
+    load_course_list();
 
-    make_course_index(courses);
+    make_course_index();
 
-    sort_course_index(COURSE_NAME);
+    sort_course_index(COURSE_CREDIT);
 
     // struct course_list_node *trav = courses->head;
     // while(trav){
@@ -92,12 +93,27 @@ int main() {
     // save_course_db(courses);
 
     int i = 0;
-    for (i = 0; i < courses->size; i++) {
+    for (i = 0; i < course_list->size; i++) {
         print_course(course_index[i]);
     }
+
+    // free_course_list();
 
     // print_course(course_index[3]);
     // print_course(course_index[2]);
     // printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
     // printf("%d", compare_course_code(course_index[0], course_index[1]));
+
+    // load_course_list();
+
+    // make_course_index();
+
+    // sort_course_index(COURSE_CREDIT);
+
+    // int i= 0;
+    // for (i = 0; i < course_list->size; i++) {
+    //     print_course(course_index[i]);
+    // }
+
+     free_course_list();
 }

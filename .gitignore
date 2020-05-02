@@ -5,6 +5,10 @@
 
 redundant
 
+app
+obj
+database
+
 .vscode
 .vs
 out
