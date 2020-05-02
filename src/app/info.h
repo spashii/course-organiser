@@ -8,6 +8,7 @@
 
 struct info{
     unsigned int course_count;
+    // unsigned int exam_count;
 };
 
 extern struct info APP_INFO;
