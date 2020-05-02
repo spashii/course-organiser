@@ -3,9 +3,7 @@
 
 #include "../course/course.h"
 #include "../course_list/course_list.h"
-// #include "../exam/exam.h"
 #include "../app/info.h"
-// #include "../list/list.h"
 
 #include <stdio.h>
 
@@ -24,9 +22,5 @@ enum db_name {
 FILE* open_db(enum db_name db, enum mode m);
 void close_db(FILE* db);
 void copy_db(enum db_name db_dest, enum db_name db_src, enum mode write_mode);
-
-int insert_course_db(struct course* record);
-struct course_list* load_course_db();
-void save_course_db(struct course_list* courses);
 
 #endif

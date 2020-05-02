@@ -1,14 +1,8 @@
 #ifndef _INFO_H
 #define _INFO_H
 
-// extern char* APP_PATH;
-
-// void load_app_path();
-// char* app_path();
-
 struct info{
     unsigned int course_count;
-    // unsigned int exam_count;
 };
 
 extern struct info APP_INFO;

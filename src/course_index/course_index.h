@@ -4,15 +4,21 @@
 #include "../course/course.h"
 #include "../course_list/course_list.h"
 
-extern struct course **course_index;
+// an array of void pointers which we
+// will use to store struct course ptrs
+extern void **course_index;
+extern int course_index_size;
 
-void init_course_index(struct course_list *courses);
-void make_course_index(struct course_list *courses);
+enum sort_by {
+    COURSE_CODE,
+    COURSE_NAME,
+    COURSE_CREDIT
+};
 
-int qs_partition_course_index(struct course **arr, int low, int high);
-int qs_partition_r_course_index(struct course **arr, int low, int high);
-void qs_course_index(struct course **arr, int low, int high);
-void qs_swap_course_index(struct course **a, struct course **b);
+void init_course_index(struct course_list *l);
+void make_course_index(struct course_list *l);
+void sort_course_index(enum sort_by sort_by_this);
 
+int get_size_course_index();
 
 #endif

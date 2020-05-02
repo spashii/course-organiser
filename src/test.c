@@ -10,11 +10,11 @@
 #include "util/util.h"
 // #include "list/list.h"
 
-struct course** course_index;
+void** course_index;
 
 int main() {
-    //  insert_course_db(set_course(init_course(), "zzzz", "names23232", 1.6));
-    // insert_course_db(set_course(init_course(), "mmmmcod2", "eary", 1.0));
+    //  insert_course_db(set_course(init_course(), "fabrez", "namfifa 12323es23232", 10));
+    // insert_course_db(set_course(init_course(), "a..", "eggg", 1.5));
     // insert_course_db(set_course(init_course(), "rrrrcod3", "salad ", 1.0));
     // insert_course_db(set_course(init_course(), "wwwwwwcod4", "hello uiop", 1.0));
     // insert_course_db(set_course(init_course(), "dfgh dcod5", "312zzzzzzsdfa", 1.0));
@@ -81,6 +81,8 @@ int main() {
 
     make_course_index(courses);
 
+    sort_course_index(COURSE_NAME);
+
     // struct course_list_node *trav = courses->head;
     // while(trav){
     //     print_course(trav->data);
@@ -91,13 +93,13 @@ int main() {
 
     // save_course_db(courses);
 
-    // int i = 0;
-    // for (i = 0; i < courses->size; i++) {
-    //     print_course(course_index[i]);
-    // }
+    int i = 0;
+    for (i = 0; i < courses->size; i++) {
+        print_course(course_index[i]);
+    }
 
-    print_course(course_index[3]);
-    print_course(course_index[2]);
-    printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
+    // print_course(course_index[3]);
+    // print_course(course_index[2]);
+    // printf("%d", strncmp(course_index[3]->code, course_index[2]->code, 16));
     // printf("%d", compare_course_code(course_index[0], course_index[1]));
 }

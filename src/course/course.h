@@ -10,15 +10,24 @@ struct course {
 
 // initializes a course object
 struct course *init_course(void);
+
 // course object setter
 struct course *set_course(struct course *foo, char code[], char name[], float credit);
+
 // set_course() wrapper
 struct course *input_course(struct course *foo);
+
 // prints a course object
 void print_course(struct course *foo);
 
-// int compare_course_code(const void *a, const void *b);
-// int compare_course_name(const void *a, const void *b);
+// comparing functions
+int compare_course_code(const void *a, const void *b);
+int compare_course_name(const void *a, const void *b);
+int compare_course_credit(const void *a, const void *b);
+
+// *TESTING* 
+// inserts course record into course.db
+int insert_course_db(struct course *record);
 
 #endif
 

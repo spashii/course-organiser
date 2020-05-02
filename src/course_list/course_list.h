@@ -18,4 +18,7 @@ struct course_list {
 struct course_list *init_course_list();
 void insert_course_list(struct course_list *l, struct course *data);
 
+struct course_list *load_course_db();
+void save_course_db(struct course_list *courses);
+
 #endif

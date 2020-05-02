@@ -10,10 +10,10 @@ test.o: app/info.h course/course.h course_list/course_list.h course_index/course
 info.o: app/info.h
 	$(C) $(CFLAGS) -c app/info.c
 
-course.o: course/course.h util/util.h
+course.o: course/course.h util/util.h database/file.h
 	$(C) $(CFLAGS) -c course/course.c
 
-course_list.o: course/course.h course_list/course_list.h
+course_list.o: course/course.h course_list/course_list.h database/file.h
 	$(C) $(CFLAGS) -c course_list/course_list.c
 
 course_index.o: course/course.h course_list/course_list.h course_index/course_index.h

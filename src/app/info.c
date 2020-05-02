@@ -5,17 +5,8 @@
 
 struct info APP_INFO;
 
-// void load_app_path(){
-//     APP_PATH = getenv("COURSE_ORGANISER_PATH");
-// }
-
-// char *app_path(){
-//     return APP_PATH;
-// }
-
 void init_info() {
     APP_INFO.course_count = 0;
-    // APP_INFO.exam_count = 0;
 }
 
 void load_info() {

@@ -15,6 +15,5 @@ char *s_readline(int size);
 void flush_stdin_buffer(void);
 long get_time();
 void nl();
-// int compare_strings() 
 
 #endif
