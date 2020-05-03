@@ -45,10 +45,10 @@ int search_course_index(struct course *key, enum field_name sorted_by, int low, 
     if (low >= high || course_index->size == 0) {
         return -1;
     } else {
-        int mid = (low + high / 2);
-        if ((*comparator)(key, course_index->c[mid]) == 0) {
+        int mid = ((low + high) / 2) + 1;
+        if (comparator(&(key), &(course_index->c[mid])) == 0) {
             return mid;
-        } else if ((*comparator)(key, course_index->c[mid]) < 0) {
+        } else if (comparator(&(key), &(course_index->c[mid])) < 0) {
             return search_course_index(key, sorted_by, low, mid - 1);
         } else {
             return search_course_index(key, sorted_by, mid + 1, high);
@@ -66,11 +66,8 @@ void make_course_index(enum field_name sort_by) {
 }
 
 int get_by_code_course_index(char *code_key) {
-    printf("%pcodekey-%s\n", &(code_key), code_key);
     struct course *search = init_course();
     strncpy(search->code, code_key, 16);
-    xstrup(search->code);
-    printf("%psearchcode-%s", &(search->code), search->code);
+    xstrupr(search->code);
     return search_course_index(search, COURSE_CODE, 0, course_index->size);
-    // return 1;
 }

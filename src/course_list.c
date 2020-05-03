@@ -7,6 +7,7 @@
 #include "course.h"
 #include "file.h"
 #include "info.h"
+#include "util.h"
 
 struct course_list *course_list;
 
@@ -24,7 +25,6 @@ void free_course_list_node(struct course_list_node *node) {
         free(node->data);
         free(node);
     }
-    // free(node);
 }
 
 void init_course_list() {
@@ -49,12 +49,28 @@ void load_course_list() {
     }
 }
 
+int is_unique_course_list(struct course *c){
+    struct course_list_node *trav = course_list->head;
+    while(trav){
+        if(strncmp(trav->data->code, c->code, 16) == 0){
+            fprintf(stderr, "Duplicate record (COURSE_CODE=%s)\n", c->code);
+            return 0;
+        }
+        trav = trav->next;
+    }
+    return 1;
+}
+
 void insert_course_list(struct course *data) {
-    struct course_list_node *insert = init_course_list_node(data);
-    struct course_list_node *save = course_list->head;
-    insert->next = save;
-    course_list->head = insert;
-    course_list->size += 1;
+    xstrupr(data->code);
+    xstrupr(data->name);
+    if (is_unique_course_list(data)) {
+        struct course_list_node *insert = init_course_list_node(data);
+        struct course_list_node *save = course_list->head;
+        insert->next = save;
+        course_list->head = insert;
+        course_list->size += 1;
+    }
 }
 
 void save_course_list() {

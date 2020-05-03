@@ -20,6 +20,7 @@ extern struct course_list *course_list;
 
 void init_course_list();
 void load_course_list();
+int is_unique_course_list(struct course *data);
 void insert_course_list(struct course *data);
 void save_course_list();
 void free_course_list();

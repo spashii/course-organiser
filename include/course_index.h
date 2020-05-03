@@ -7,7 +7,7 @@
 struct course_index {
     // an array of void pointers which we
     // will use to store struct course ptrs
-    void **c;
+    struct course **c;
     unsigned int size;
 };
 
