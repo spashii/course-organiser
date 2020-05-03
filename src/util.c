@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <time.h>
 
 char *readLine(void) {
@@ -35,6 +36,15 @@ char *s_readline(int size) {
         index++;
     }
     return line;
+}
+
+char *strupr(char *str){
+    char *p = str;
+    while (*p) {
+        *p = toupper(*p);
+        p++;
+    }
+    return str;
 }
 
 void flush_stdin_buffer() {

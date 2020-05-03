@@ -12,6 +12,7 @@ enum {
 
 char *readLine(void);
 char *s_readline(int size);
+char *strupr(char *str);
 void flush_stdin_buffer(void);
 long get_time();
 void nl();
