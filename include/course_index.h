@@ -11,21 +11,19 @@ struct course_index {
     unsigned int size;
 };
 
+
+// extern struct course *search;
 extern struct course_index *course_index;
 
-enum sort_by {
-    COURSE_CODE,
-    COURSE_NAME,
-    COURSE_CREDIT
-};
 
 void init_course_index();
 void load_course_index();
-void sort_course_index(enum sort_by field_name);
+void sort_course_index(enum field_name sort_by);
 void free_course_index();
+int search_course_index(struct course *key, enum field_name search_field, int low, int high);
 
-void make_course_index(enum sort_by field_name);
+void make_course_index(enum field_name sort_by);
 
-int get_size_course_index();
+int get_by_code_course_index(char *code_key);
 
 #endif

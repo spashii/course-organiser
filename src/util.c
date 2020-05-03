@@ -44,7 +44,14 @@ char *strupr(char *str){
         *p = toupper(*p);
         p++;
     }
-    return str;
+    return p;
+}
+
+char* xstrup(char *string) {
+    char *s = string;
+    for (; *string; string++)
+        *string = toupper((unsigned char)*string);
+    return s;
 }
 
 void flush_stdin_buffer() {

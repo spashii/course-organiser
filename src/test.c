@@ -20,7 +20,7 @@ int main() {
     // load_course_list();
     // make_course_index();
     // sort_course_index(COURSE_CREDIT);
-    
+
     // free_course_index();
     // free_course_list();
 
@@ -29,23 +29,28 @@ int main() {
 
     int i;
     for (i = 0; i < course_index->size; i++) {
+        printf("%d", i);
         print_course(course_index->c[i]);
     }
 
     // insert_course_db(set_course(init_course(), "nba", "nambia", 50));
-    insert_course_list(input_course(init_course()));
     printf("\n=----=-=\n");
 
-    make_course_index(COURSE_CREDIT);
+    int s = search_course_index(set_course(init_course(), "salad", "", 0.0), COURSE_CODE, 0, course_index->size);
+    printf("%d", s);
 
-    for (i = 0; i < course_index->size; i++) {
-        print_course(course_index->c[i]);
-    }
+    // printf("\n%d", get_by_code_course_index("abc"));
 
+    // make_course_index(COURSE_CREDIT);
+
+    // for (i = 0; i < course_index->size; i++) {
+    //     print_course(course_index->c[i]);
+    // }
+    free_course_index();
     free_course_list();
 
-    //     insert_course_db(set_course(init_course(), "a..", "eggg", 1.5));
-    //     insert_course_db(set_course(init_course(), "rrrrcod3", "salad ", 1.0));
+    // insert_course_db(set_course(init_course(), "d", "eggg", 1.5));
+    // insert_course_db(set_course(init_course(), "s", "salad ", 1.0));
     //     insert_course_db(set_course(init_course(), "wwwwwwcod4", "hello uiop", 1.0));
     //     insert_course_db(set_course(init_course(), "dfgh dcod5", "312zzzzzzsdfa", 1.0));
 
@@ -128,7 +133,7 @@ int main() {
     // //     print_course(course_index->c[i]);
     // // }
 
-    // 
+    //
     // // save_course_list();
     // // free_course_list();
     // load_course_list();
@@ -137,8 +142,6 @@ int main() {
 
     // sort_course_index(COURSE_CODE);
     // sort_course_index(COURSE_CREDIT);
-
-
 
     // free_course_list();
 

@@ -82,13 +82,13 @@ int compare_course_code(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
     
-    return strcmp(strupr(left->code), strupr(right->code));
+    return strcmp(left->code, right->code);
 }
 
 int compare_course_name(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
-    return strcmp(strupr(left->name), strupr(right->name));
+    return strcmp(left->name, right->name);
 }
 
 int compare_course_credit(const void *a, const void *b) {
