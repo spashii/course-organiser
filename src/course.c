@@ -24,8 +24,8 @@ void print_course(struct course *c) {
 }
 
 struct course *set_course(struct course *c, char code[], char name[], float credit) {
-    strncpy(c->code, code, 16);
-    strncpy(c->name, name, 128);
+    strncpy(c->code, xstrupr(code), 16);
+    strncpy(c->name, xstrupr(name), 128);
     c->credit = credit;
     return c;
 }
@@ -58,8 +58,8 @@ int insert_course_db(struct course *record) {
     return -1;
 }
 
-void *get_comparator_course(enum field_name f){
-    switch(f){
+void *get_comparator_course(enum field_name f) {
+    switch (f) {
         case COURSE_ID:
             return &compare_course_id;
         case COURSE_NAME:
@@ -72,7 +72,7 @@ void *get_comparator_course(enum field_name f){
     }
 }
 
-int compare_course_id(const void *a, const void *b){
+int compare_course_id(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
     return (int)(left->id - right->id);
@@ -81,14 +81,14 @@ int compare_course_id(const void *a, const void *b){
 int compare_course_code(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
-    
-    return strcmp(left->code, right->code);
+
+    return strncmp(left->code, right->code, 16);
 }
 
 int compare_course_name(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
-    return strcmp(left->name, right->name);
+    return strncmp(left->name, right->name, 128);
 }
 
 int compare_course_credit(const void *a, const void *b) {

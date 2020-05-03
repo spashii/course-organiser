@@ -17,6 +17,6 @@ void flush_stdin_buffer(void);
 long get_time();
 void nl();
 
-char *xstrup(char *string);
+char *xstrupr(char *string);
 
 #endif

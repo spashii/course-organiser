@@ -47,7 +47,7 @@ char *strupr(char *str){
     return p;
 }
 
-char* xstrup(char *string) {
+char* xstrupr(char *string) {
     char *s = string;
     for (; *string; string++)
         *string = toupper((unsigned char)*string);
