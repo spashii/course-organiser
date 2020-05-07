@@ -1,10 +1,11 @@
 #include "util.h"
 
+#include <ctype.h>
 #include <malloc.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include <time.h>
+#include <stdlib.h>
 
 char *readLine(void) {
     char *line = NULL;
@@ -29,7 +30,7 @@ char *readLine(void) {
 char *s_readline(int size) {
     char *line = malloc(size);
     int ch;
-    int index=0;
+    int index = 0;
     while (index + 1 < size && ((ch = getchar()) != '\n' && ch != EOF)) {
         line[index] = (char)ch;
         line[index + 1] = '\0';
@@ -38,7 +39,7 @@ char *s_readline(int size) {
     return line;
 }
 
-char *strupr(char *str){
+char *strupr(char *str) {
     char *p = str;
     while (*p) {
         *p = toupper(*p);
@@ -47,7 +48,7 @@ char *strupr(char *str){
     return p;
 }
 
-char* xstrupr(char *string) {
+char *xstrupr(char *string) {
     char *s = string;
     for (; *string; string++)
         *string = toupper((unsigned char)*string);
@@ -65,6 +66,17 @@ long get_time() {
     return now;
 }
 
-void nl(){
+void print_datetime(time_t now) {
+    struct tm *t = localtime(&now);
+    char s[32];
+    strftime(s, 32, "%a %d %h %I:%M%p", t);
+    printf("%s", s);
+}
+
+void nl() {
     printf("\n");
+}
+
+void clear_screen(){
+    system("cls || clear");
 }

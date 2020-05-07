@@ -25,5 +25,6 @@ int search_course_index(struct course *key, enum field_name search_field, int lo
 void make_course_index(enum field_name sort_by);
 
 int get_by_code_course_index(char *code_key);
+void edit_course_index(int index);
 
 #endif

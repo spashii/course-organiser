@@ -63,6 +63,7 @@ void make_course_index(enum field_name sort_by) {
     init_course_index();
     load_course_index();
     sort_course_index(sort_by);
+    printf("Indexed %d courses....\n", course_index->size);
 }
 
 int get_by_code_course_index(char *code_key) {

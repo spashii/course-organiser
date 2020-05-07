@@ -47,13 +47,15 @@ void load_course_list() {
         save_info();
         close_db(db);
     }
+    printf("Loaded %d courses....\n", course_list->size);
+    printf("Indexing courses....\n");
 }
 
-int is_unique_course_list(struct course *c){
+int is_unique_course_list(struct course *c) {
     struct course_list_node *trav = course_list->head;
-    while(trav){
-        if(strncmp(trav->data->code, c->code, 16) == 0){
-            fprintf(stderr, "Duplicate record (COURSE_CODE=%s)\n", c->code);
+    while (trav) {
+        if (strncmp(trav->data->code, c->code, 16) == 0) {
+            printf("Duplicate record (COURSE_CODE=%s) found....\n", c->code);
             return 0;
         }
         trav = trav->next;
@@ -102,5 +104,27 @@ void free_course_list() {
             trav = trav_next;
         } while (trav_next);
         free(course_list);
+    }
+}
+
+void delete_in_course_list(char *code){
+    struct course_list_node *temp = course_list->head;
+    if(strcmp(temp->data->code, code) == 0 ){
+        course_list->head = temp->next;
+        free_course_list_node(temp);
+        course_list->size -= 1;
+    } else {
+        struct course_list_node *trav = temp;
+        struct course_list_node *prev;
+        while(strcmp(trav->data->code, code) != 0){
+            prev = trav;
+            if(trav->next == NULL) {
+                return;
+            }
+            trav = trav->next;
+        }
+        prev->next = trav->next;
+        free_course_list_node(trav);
+        course_list->size -= 1;
     }
 }
