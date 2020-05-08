@@ -12,6 +12,9 @@ struct course *init_course() {
     new->id = get_time();
     strncpy(new->code, "", 16);
     strncpy(new->name, "", 128);
+    strncpy(new->dept,"",128);
+    strncpy(new->room,"",16);
+    strncpy(new->type,"",128);
     new->credit = 0.0;
     return new;
 }
@@ -21,12 +24,18 @@ void print_course(struct course *c) {
     printf("Code    : %s\n", c->code);
     printf("Name    : %s\n", c->name);
     printf("Credits : %.1f\n", c->credit);
+    printf("Department   : %s\n", c->dept);
+    printf("Room    : %s\n", c->room);
+    printf("Type    : %s\n", c->type);
 }
 
-struct course *set_course(struct course *c, char code[], char name[], float credit) {
+struct course *set_course(struct course *c, char code[], char name[], float credit,char dept[],char room[], char type[]) {
     strncpy(c->code, code, 16);
     strncpy(c->name, name, 128);
     c->credit = credit;
+    strncpy(c->dept, dept, 128);
+    strncpy(c->room, room, 16);
+    strncpy(c->type, type, 128);
     return c;
 }
 
@@ -38,6 +47,12 @@ struct course *input_course(struct course *c) {
     printf("Course Credits? ");
     float credit;
     scanf("%f", &credit);
+    printf("Course Department? ");
+    char *dept = s_readline(128);
+    printf("Course Room? ")'
+    char *room = s_readline(16);
+    printf("Course Type?");
+    char *trpe =s_readline(128);
     flush_stdin_buffer();
     set_course(c, code, name, credit);
     free(name);
