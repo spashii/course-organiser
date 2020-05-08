@@ -6,7 +6,7 @@ struct course {
     char code[16];
     char name[128];
     float credit;
-    char dept[16];
+    char dept[128];
     char room[16];
     char type[128];
 };
