@@ -6,13 +6,16 @@ struct course {
     char code[16];
     char name[128];
     float credit;
+    char dept[16];
+    char room[16];
+    char type[128];
 };
 
 // initializes a course object
 struct course *init_course(void);
 
 // course object setter
-struct course *set_course(struct course *foo, char code[], char name[], float credit);
+struct course *set_course(struct course *foo, char code[], char name[], float credit, char dept[], char room[], char type[]);
 
 // set_course() wrapper
 struct course *input_course(struct course *foo);
