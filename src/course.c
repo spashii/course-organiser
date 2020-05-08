@@ -52,11 +52,14 @@ struct course *input_course(struct course *c) {
     printf("Course Room? ")'
     char *room = s_readline(16);
     printf("Course Type?");
-    char *trpe =s_readline(128);
+    char *type =s_readline(128);
     flush_stdin_buffer();
-    set_course(c, code, name, credit);
+    set_course(c, code, name, credit, dept, room, type);
     free(name);
     free(code);
+    free(dept);
+    free(room);
+    free(type);
     return c;
 }
 
