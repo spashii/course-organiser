@@ -17,13 +17,16 @@ struct course *init_course() {
 }
 
 void print_course(struct course *c) {
-    printf("\nID      : %ld\n", c->id);
-    printf("Code    : %s\n", c->code);
-    printf("Name    : %s\n", c->name);
-    printf("Credits : %.1f\n", c->credit);
+    if (c) {
+        printf("\nID      : %ld\n", c->id);
+        printf("Code    : %s\n", c->code);
+        printf("Name    : %s\n", c->name);
+        printf("Credits : %.1f\n", c->credit);
+    }
 }
 
-struct course *set_course(struct course *c, char code[], char name[], float credit) {
+struct course *set_course(struct course *c, char code[], char name[],
+                          float credit) {
     strncpy(c->code, xstrupr(code), 16);
     strncpy(c->name, xstrupr(name), 128);
     c->credit = credit;
@@ -39,7 +42,7 @@ struct course *input_course(struct course *c) {
     float credit;
     scanf("%f", &credit);
     flush_stdin_buffer();
-    set_course(c, code, name, credit);
+    c = set_course(c, code, name, credit);
     free(name);
     free(code);
     return c;
@@ -62,11 +65,12 @@ void *get_comparator_course(enum course_field_name f) {
     switch (f) {
         case COURSE_ID:
             return &compare_course_id;
+        case COURSE_CODE:
+            return &compare_course_code;
         case COURSE_NAME:
             return &compare_course_name;
         case COURSE_CREDIT:
             return &compare_course_credit;
-        case COURSE_CODE:
         default:
             return &compare_course_code;
     }

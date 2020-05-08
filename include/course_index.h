@@ -12,7 +12,6 @@ struct course_index {
 };
 
 
-// extern struct course *search;
 extern struct course_index *course_index;
 extern int sorted_by_course_index;
 
@@ -24,7 +23,8 @@ int search_course_index(struct course *key, enum course_field_name search_field,
 
 void make_course_index(enum course_field_name sort_by);
 
-int get_by_code_course_index(char *code_key);
+int get_index_by_code_course_index(char *code_key);
+struct course* get_by_code_course_index(char *code_key);
 struct course* get_by_id_course_index(long id_key);
 void edit_course_index(int index);
 

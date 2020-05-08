@@ -24,7 +24,6 @@ int is_unique_course_list(struct course *data);
 void insert_course_list(struct course *data);
 void save_course_list();
 void free_course_list();
-// void delete_node_course_list(char *code);
-// void delete_node_at_course_list(int position);
 void delete_in_course_list(char *code);
+
 #endif

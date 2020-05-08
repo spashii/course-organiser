@@ -1,6 +1,8 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
+#include <time.h>
+
 // enum error_codes{
 //     RET_OK,
 //     RET_SUCCESS,
@@ -10,15 +12,20 @@
 //     RET_FILE_WRITE
 // };
 
-char *readLine(void);
 char *s_readline(int size);
 char *strupr(char *str);
+char *xstrupr(char *string);
 void flush_stdin_buffer(void);
-long get_time();
-void print_datetime();
 void nl();
 void clear_screen();
 
-char *xstrupr(char *string);
+
+time_t get_time();
+void print_datetime();
+char *get_datetime_format(time_t t, char *format);
+int validate_date(int date, int month);
+time_t input_time();
+
+
 
 #endif

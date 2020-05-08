@@ -48,7 +48,6 @@ void load_course_list() {
         close_db(db);
     }
     printf("Loaded %d courses....\n", course_list->size);
-    printf("Indexing courses....\n");
 }
 
 int is_unique_course_list(struct course *c) {

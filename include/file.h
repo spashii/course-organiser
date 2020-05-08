@@ -13,6 +13,8 @@ enum mode {
 enum db_name {
     COURSE_DB,
     COURSE_DB_BKP,
+    EXAM_DB,
+    EXAM_DB_BKP,
     INFO_DB
 };
 

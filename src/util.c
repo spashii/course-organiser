@@ -3,29 +3,9 @@
 #include <ctype.h>
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <stdlib.h>
-
-char *readLine(void) {
-    char *line = NULL;
-    int ch;
-    line = malloc(sizeof(char));
-    if (!line) {
-        return NULL;
-    }
-    line[0] = '\0';
-    int index;
-    for (index = 0; ((ch = getchar()) != '\n') && (ch != EOF); index++) {
-        line = realloc(line, sizeof(char) * (index + 2));
-        if (!line) {
-            return NULL;
-        }
-        line[index] = (char)ch;
-        line[index + 1] = '\0';
-    }
-    return line;
-}
 
 char *s_readline(int size) {
     char *line = malloc(size);
@@ -50,8 +30,7 @@ char *strupr(char *str) {
 
 char *xstrupr(char *string) {
     char *s = string;
-    for (; *string; string++)
-        *string = toupper((unsigned char)*string);
+    for (; *string; string++) *string = toupper((unsigned char)*string);
     return s;
 }
 
@@ -61,7 +40,7 @@ void flush_stdin_buffer() {
     }
 }
 
-long get_time() {
+time_t get_time() {
     time_t now = time(NULL);
     return now;
 }
@@ -73,10 +52,42 @@ void print_datetime(time_t now) {
     printf("%s", s);
 }
 
-void nl() {
-    printf("\n");
+char *get_datetime_format(time_t t, char *format) {
+    struct tm *tm_t = localtime(&t);
+    char *s = malloc(64);
+    strftime(s, 64, format, tm_t);
+    return s;
 }
 
-void clear_screen(){
-    system("cls || clear");
+time_t input_time() {
+    time_t t = get_time();
+    struct tm *tm_t = localtime(&t);
+    int date, month, year, hour, minute;
+    do {
+        printf("Date(dd/mm/yyyy)? ");
+        scanf("%d/%d/%d", &date, &month, &year);
+        flush_stdin_buffer();
+        date = validate_date(date, month);
+    } while (!((date >= 1 && date <= 31) && (month >= 1 && month <= 12) &&
+               (year >= 1900)));
+    tm_t->tm_mday = date;
+    tm_t->tm_mon = month - 1;
+    tm_t->tm_year = year - 1900;
+    do {
+        printf("Time in 24hr format(HH:MM)? ");
+        scanf("%d:%d", &hour, &minute);
+        flush_stdin_buffer();
+    } while (!((hour >= 0 && hour <= 23) && (minute >= 0 && minute <= 59)));
+    tm_t->tm_hour = hour;
+    tm_t->tm_min = minute;
+    return mktime(tm_t);
 }
+
+int validate_date(int date, int month) {
+    // todo
+    return date;
+}
+
+void nl() { printf("\n"); }
+
+void clear_screen() { system("cls || clear"); }

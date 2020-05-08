@@ -14,7 +14,8 @@ void init_course_operation(){
 void display_code_name_course_operation(){
     int i;
     for (i = 0; i < course_index->size; i++) {
-        printf("%2d. %-16s - %s\n", i + 1, course_index->c[i]->code, course_index->c[i]->name);
+        printf("%2d. %-16s - %s\n", i + 1, 
+               course_index->c[i]->code, course_index->c[i]->name);
     }
 }
 

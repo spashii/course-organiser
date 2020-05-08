@@ -5,8 +5,6 @@
 #include <string.h>
 
 #include "info.h"
-#include "course.h"
-#include "course_list.h"
 
 char* get_db_path(enum db_name db) {
     switch (db) {
@@ -14,6 +12,10 @@ char* get_db_path(enum db_name db) {
             return "database/course.db";
         case COURSE_DB_BKP:
             return "database/course.db.bkp";
+        case EXAM_DB:
+            return "database/exam.db";
+        case EXAM_DB_BKP:
+            return "database/exam.db.bkp";
         default:
             return "";
     }
