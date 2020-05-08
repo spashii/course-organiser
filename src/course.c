@@ -58,7 +58,7 @@ int insert_course_db(struct course *record) {
     return -1;
 }
 
-void *get_comparator_course(enum field_name f) {
+void *get_comparator_course(enum course_field_name f) {
     switch (f) {
         case COURSE_ID:
             return &compare_course_id;

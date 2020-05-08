@@ -1,7 +1,7 @@
 #ifndef _COURSE_H_
 #define _COURSE_H_
 
-enum field_name {
+enum course_field_name {
     COURSE_ID,
     COURSE_CODE,
     COURSE_NAME,
@@ -28,7 +28,7 @@ struct course *input_course(struct course *foo);
 void print_course(struct course *foo);
 
 // comparing functions
-void *get_comparator_course(enum field_name f);
+void *get_comparator_course(enum course_field_name f);
 int compare_course_id(const void *a, const void *b);
 int compare_course_code(const void *a, const void *b);
 int compare_course_name(const void *a, const void *b);
