@@ -27,6 +27,7 @@ struct exam *init_exam_by_course_code(char *code);
 void print_exam(struct exam *e);
 struct exam *set_exam(struct exam *e, char name[], char details[], char location[], time_t datetime);
 struct exam *input_exam(struct exam *e);
+char *get_course_code_exam(struct exam *e);
 
 void *get_comparator_exam(enum exam_field_name f);
 

@@ -36,11 +36,7 @@ void print_exam(struct exam *e) {
     if (e) {
         printf("\nID       : %ld\n", e->id);
         printf("C_ID     : %ld\n", e->course_id);
-        struct course *c = init_course();
-        c = get_by_id_course_index(e->course_id);
-        if (c) {
-            printf("C_Code   : %s\n", c->code);
-        }
+        printf("C_Code   : %s\n", get_course_code_exam(e));
         printf("Name     : %s\n", e->name);
         printf("Details  : %s\n", e->details);
         printf("Location : %s\n", e->location);
@@ -73,6 +69,16 @@ struct exam *input_exam(struct exam *e) {
     return e;
 }
 
+char *get_course_code_exam(struct exam *e) {
+    if (e) {
+        struct course *c = get_by_id_course_index(e->course_id);
+        if (c) {
+            return c->code;
+        }
+    }
+    return NULL;
+}
+
 void *get_comparator_exam(enum exam_field_name f) {
     switch (f) {
         case EXAM_ID:
@@ -92,9 +98,38 @@ void *get_comparator_exam(enum exam_field_name f) {
     }
 }
 
-int compare_exam_id(const void *a, const void *b) { return 0; }
-int compare_exam_course_id(const void *a, const void *b) { return 0; }
-int compare_exam_name(const void *a, const void *b) { return 0; }
-int compare_exam_details(const void *a, const void *b) { return 0; }
-int compare_exam_location(const void *a, const void *b) { return 0; }
-int compare_exam_datetime(const void *a, const void *b) { return 0; }
+int compare_exam_id(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return (int)(left->id - right->id);
+}
+
+int compare_exam_course_id(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return (int)(left->course_id - right->course_id);
+}
+
+int compare_exam_name(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return strncmp(left->name, right->name, 64);
+}
+
+int compare_exam_details(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return strncmp(left->details, right->details, 128);
+}
+
+int compare_exam_location(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return strncmp(left->location, right->location, 32);
+}
+
+int compare_exam_datetime(const void *a, const void *b) {
+    struct exam *left = *(struct exam **)a;
+    struct exam *right = *(struct exam **)b;
+    return (int)(left->datetime - right->datetime);
+}

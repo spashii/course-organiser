@@ -8,9 +8,9 @@
 #include "course_list.h"
 #include "util.h"
 
+struct course_list *course_list;
 struct course_index *course_index;
 int sorted_by_course_index;
-struct course_list *course_list;
 
 void init_course_index() {
     if (course_list) {
@@ -34,10 +34,12 @@ void sort_course_index(enum course_field_name sort_by) {
     if (course_index) {
         int (*comparator)(const void *, const void *) =
             get_comparator_course(sort_by);
-        qsort(course_index->c, course_index->size, sizeof(struct course *),
-              comparator);
+        if (comparator) {
+            qsort(course_index->c, course_index->size, sizeof(struct course *),
+                  comparator);
+            sorted_by_course_index = sort_by;
+        }
     }
-    sorted_by_course_index = sort_by;
 }
 
 void free_course_index() {

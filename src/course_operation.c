@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "course.h"
+#include "course_list.h"
 #include "course_index.h"
 #include "util.h"
 

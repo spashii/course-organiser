@@ -5,12 +5,11 @@
 #include "course_list.h"
 
 struct course_index {
-    // an array of void pointers which we
-    // will use to store struct course ptrs
+     // an array of struct course pointers which 
+    // we will use to store struct course ptrs
     struct course **c;
     unsigned int size;
 };
-
 
 extern struct course_index *course_index;
 extern int sorted_by_course_index;
@@ -26,6 +25,5 @@ void make_course_index(enum course_field_name sort_by);
 int get_index_by_code_course_index(char *code_key);
 struct course* get_by_code_course_index(char *code_key);
 struct course* get_by_id_course_index(long id_key);
-void edit_course_index(int index);
 
 #endif
