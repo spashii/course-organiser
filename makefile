@@ -1,4 +1,4 @@
-OUT := app.o
+OUT := app
 
 INC_DIR := include
 SRC_DIR := src

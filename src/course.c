@@ -11,7 +11,7 @@ struct course *init_course() {
     struct course *new = (struct course *)malloc(sizeof(struct course));
     new->id = get_time();
     strncpy(new->code, "", 16);
-    strncpy(new->name, "", 128);
+    strncpy(new->name, "", 64);
     new->credit = 0.0;
     return new;
 }
@@ -19,16 +19,22 @@ struct course *init_course() {
 void print_course(struct course *c) {
     if (c) {
         // printf("\nID      : %ld\n", c->id);
-        printf("Code    : %s\n", c->code);
-        printf("Name    : %s\n", c->name);
-        printf("Credits : %.1f\n", c->credit);
+        printf(
+            "------------------------------------------------------------------"
+            "----------\n");
+        printf("|CODE    | %-64s|\n", c->code);
+        printf("|NAME    | %-64s|\n", c->name);
+        printf("|CREDITS | %-64.1f|\n", c->credit);
+        printf(
+            "------------------------------------------------------------------"
+            "----------");
     }
 }
 
 struct course *set_course(struct course *c, char code[], char name[],
                           float credit) {
     strncpy(c->code, xstrupr(code), 16);
-    strncpy(c->name, xstrupr(name), 128);
+    strncpy(c->name, xstrupr(name), 64);
     c->credit = credit;
     return c;
 }
@@ -37,7 +43,7 @@ struct course *input_course(struct course *c) {
     printf("Course Code? ");
     char *code = s_readline(16);
     printf("Course Name? ");
-    char *name = s_readline(128);
+    char *name = s_readline(64);
     printf("Course Credits? ");
     float credit;
     scanf("%f", &credit);
@@ -92,7 +98,7 @@ int compare_course_code(const void *a, const void *b) {
 int compare_course_name(const void *a, const void *b) {
     struct course *left = *(struct course **)a;
     struct course *right = *(struct course **)b;
-    return strncmp(left->name, right->name, 128);
+    return strncmp(left->name, right->name, 64);
 }
 
 int compare_course_credit(const void *a, const void *b) {

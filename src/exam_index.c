@@ -86,16 +86,66 @@ struct exam *get_by_id_exam_index(long id_key) {
     return index == -1 ? NULL : exam_index->e[index];
 }
 
-void print_exams_for_course(struct course *c) {
+int print_exams_for_course(struct course *c) {
+    if (sorted_by_exam_index != EXAM_DATETIME) {
+        sort_exam_index(EXAM_DATETIME);
+    }
+    int i, count = 0;
+    struct exam *e;
+    printf("---------------------------------------------------------\n");
+    for (i = 0; i < exam_index->size; i++) {
+        e = exam_index->e[i];
+        if (e->course_id == c->id) {
+            print_short_exam(e);
+            count++;
+        }
+    }
+    if (count == 0)
+        printf("| NO EXAMS FOR THIS COURSE                              |\n");
+    printf("---------------------------------------------------------\n");
+    return count;
+}
+
+void display_upcoming_exams(int count) {
     if (sorted_by_exam_index != EXAM_DATETIME) {
         sort_exam_index(EXAM_DATETIME);
     }
     int i;
     struct exam *e;
-    for(i=0; i<exam_index->size; i++){
+    printf("\nUPCOMING EXAMS\n");
+    if (exam_index->size == 0) {
+        printf("---------------------\n");
+        printf("| NO UPCOMING EXAMS |\n");
+        printf("---------------------\n");
+        return;
+    }
+    time_t now = get_time();
+    printf("----------------------------------------------------------\n");
+    printf("| %-16s | %-16s | %-16s |\n", "COURSE CODE", "EXAM", "DATE");
+    printf("----------------------------------------------------------\n");
+    for (i = 0; count>0 && i < exam_index->size; i++) {
         e = exam_index->e[i];
-        if(e->course_id == c->id){
-            print_short_exam(e);
+        if (e->datetime > now) {
+            printf("| %-16s | %-16s | %-16s |\n", get_course_code_exam(e),
+                   e->name, get_datetime_format(e->datetime, "%d/%m"));
+            count--;
         }
     }
+    printf("----------------------------------------------------------\n");
+    return;
+}
+
+int count_course_exam_index(struct course *c) {
+    int count = 0;
+    if (c) {
+        int i;
+        struct exam *e;
+        for (i = 0; i < exam_index->size; i++) {
+            e = exam_index->e[i];
+            if ((is_active_exam(e)) && (e->course_id == c->id)) {
+                count++;
+            }
+        }
+    }
+    return count;
 }

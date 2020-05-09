@@ -9,5 +9,6 @@ void delete_course_operation(struct course *c);
 void edit_course_operation(struct course *c);
 void insert_course_operation();
 void save_course_operation();
+int search_course_operation(char *code_key);
 
 #endif

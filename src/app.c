@@ -7,7 +7,7 @@
 
 int main() {
     clear_screen();
-    printf("Initializing app....\n");
+    printf("\nInitializing app....\n");
     init_course_operation();
     init_exam_operation();
     printf("\nPress enter to continue...");

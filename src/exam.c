@@ -17,9 +17,9 @@ struct exam *init_exam(struct course *c) {
     if (c) {
         new->course_id = c->id;
     }
-    strncpy(new->name, "", 64);
+    strncpy(new->name, "", 16);
     strncpy(new->details, "", 128);
-    strncpy(new->location, "", 32);
+    strncpy(new->location, "", 16);
     new->datetime = 0;
     return new;
 }
@@ -34,42 +34,45 @@ struct exam *init_exam_by_course_code(char *code) {
 
 void print_exam(struct exam *e) {
     if (e) {
-        // printf("\nID            : %ld\n", e->id);
-        // printf("C_ID          : %ld\n", e->course_id);
-        printf("Course Code   : %s\n", get_course_code_exam(e));
-        printf("Name          : %s\n", e->name);
-        printf("Details       : %s\n", e->details);
-        printf("Location      : %s\n", e->location);
-        printf("Time          : %s\n",
-               get_datetime_format(e->datetime, "%d/%m/%Y %I:%M%p"));
+        printf("---------------------------------------------------\n");
+        printf("|NAME           | %-32s|\n", e->name);
+        printf("|COURSE CODE    | %-32s|\n", get_course_code_exam(e));
+        printf("|DATE           | %-32s|\n",
+               get_datetime_format(e->datetime, "%a %b %d %G"));
+        printf("|TIME           | %-32s|\n",
+               get_datetime_format(e->datetime, "%I:%M%p"));
+        printf("|LOCATION       | %-32s|\n", e->location);
+        printf("|STATUS         | %-32s|\n",
+               is_active_exam(e) ? "ACTIVE" : "INACTIVE");
+        printf("---------------------------------------------------\n");
+
+        printf("\nEXAM DETAILS : %s\n", e->details);
     }
 }
 
 void print_short_exam(struct exam *e) {
     if (e) {
-        printf("%s on %s at %s\n",
-               e->name,
-               get_datetime_format(e->datetime, "%d/%m %I:%M%p"),
-               e->location);
+        printf("| %-16s on %-13s at %-16s |\n", e->name,
+               get_datetime_format(e->datetime, "%d/%m %I:%M%p"), e->location);
     }
 }
 
 struct exam *set_exam(struct exam *e, char name[], char details[],
                       char location[], time_t datetime) {
-    strncpy(e->name, xstrupr(name), 64);
+    strncpy(e->name, xstrupr(name), 16);
     strncpy(e->details, xstrupr(details), 128);
-    strncpy(e->location, xstrupr(location), 32);
+    strncpy(e->location, xstrupr(location), 16);
     e->datetime = datetime;
     return e;
 }
 
 struct exam *input_exam(struct exam *e) {
     printf("Exam Name? ");
-    char *name = s_readline(64);
+    char *name = s_readline(16);
     printf("Exam Details? ");
     char *details = s_readline(128);
     printf("Exam Location? ");
-    char *location = s_readline(32);
+    char *location = s_readline(16);
     time_t datetime = input_time();
     e = set_exam(e, name, details, location, datetime);
     free(name);
@@ -86,6 +89,15 @@ char *get_course_code_exam(struct exam *e) {
         }
     }
     return NULL;
+}
+
+int is_active_exam(struct exam *e) {
+    if (e) {
+        if (e->datetime > get_time()) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void *get_comparator_exam(enum exam_field_name f) {

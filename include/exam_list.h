@@ -25,5 +25,6 @@ void insert_exam_list(struct exam *data);
 void save_exam_list();
 void free_exam_list();
 void delete_in_exam_list(long id);
+void delete_exams_of_course_exam_list(long course_id);
 
 #endif

@@ -25,6 +25,8 @@ void make_exam_index(enum exam_field_name sort_by);
 
 struct exam* get_by_id_exam_index(long id_key);
 
-void print_exams_for_course(struct course *c);
+int print_exams_for_course(struct course *c);
+void display_upcoming_exams(int count);
+int count_course_exam_index(struct course *c);
 
 #endif

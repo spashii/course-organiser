@@ -16,12 +16,20 @@ void init_exam_operation() {
 
 void display_code_name_date_exam_operation() {
     int i;
+    struct exam *e;
+    printf(
+        "---------------------------------------------------------\n");
+    printf("| %-2s | %-16s | %-16s | %-10s |\n", "NO", "COURSE CODE", "EXAM",
+           "DATE");
+    printf("---------------------------------------------------------\n");
     for (i = 0; i < exam_index->size; i++) {
-        printf("%2d. %-8s - %s\n", i + 1,
-               get_course_code_exam(exam_index->e[i]),
-               get_datetime_format(exam_index->e[i]->datetime,
-                                   "%d/%m/%Y %I:%M%p"));
+        e = exam_index->e[i];
+        if (e->course_id)
+            printf("| %-2d | %-16s | %-16s | %-10s |\n", i + 1,
+                   get_course_code_exam(e), e->name,
+                   get_datetime_format(e->datetime, "%d/%m/%Y"));
     }
+    printf("---------------------------------------------------------\n");
 }
 
 void delete_exam_operation(struct exam *e) {

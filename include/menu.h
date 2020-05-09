@@ -8,9 +8,11 @@ void course_menu();
 void display_all_courses_menu();
 void display_course_menu(int index);
 void display_exam_course_menu(struct course *c);
-void sort_course_menu();
+void search_course_menu();
 void exam_menu();
 void display_all_exams_menu();
+void display_active_exams_menu();
+void display_exam_menu(int index);
 void info_menu();
 
 #endif

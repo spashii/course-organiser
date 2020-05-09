@@ -16,9 +16,9 @@ enum exam_field_name {
 struct exam {
     long id;
     long course_id;
-    char name[64];
+    char name[16];
     char details[128];
-    char location[32];
+    char location[16];
     time_t datetime;
 };
 
@@ -29,6 +29,7 @@ void print_short_exam(struct exam *e);
 struct exam *set_exam(struct exam *e, char name[], char details[], char location[], time_t datetime);
 struct exam *input_exam(struct exam *e);
 char *get_course_code_exam(struct exam *e);
+int is_active_exam(struct exam *e);
 
 void *get_comparator_exam(enum exam_field_name f);
 

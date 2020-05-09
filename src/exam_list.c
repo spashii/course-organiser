@@ -96,14 +96,14 @@ void save_exam_list() {
 }
 
 void free_exam_list() {
-    if (exam_list) {
+    if (exam_list->head) {
         struct exam_list_node *trav = exam_list->head;
         struct exam_list_node *trav_next;
-        do {
+        while (trav->next) {
             trav_next = trav->next;
             free_exam_list_node(trav);
             trav = trav_next;
-        } while (trav_next);
+        }
         free(exam_list);
     }
 }
@@ -127,5 +127,15 @@ void delete_in_exam_list(long id) {
         prev->next = trav->next;
         free_exam_list_node(trav);
         exam_list->size -= 1;
+    }
+}
+
+void delete_exams_of_course_exam_list(long course_id) {
+    struct exam_list_node *temp = exam_list->head;
+    while(temp){
+        if(temp->data->course_id == course_id) {
+            delete_in_exam_list(temp->data->id);
+        }
+        temp = temp->next;
     }
 }

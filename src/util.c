@@ -16,6 +16,10 @@ char *s_readline(int size) {
         line[index + 1] = '\0';
         index++;
     }
+    if (index == size-1){
+        printf("Input exceeded %d characters. Truncating excess characters.\n", size);
+        flush_stdin_buffer();
+    }
     return line;
 }
 

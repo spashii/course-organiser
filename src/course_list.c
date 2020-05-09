@@ -94,14 +94,14 @@ void save_course_list() {
 }
 
 void free_course_list() {
-    if (course_list) {
+    if (course_list->head) {
         struct course_list_node *trav = course_list->head;
         struct course_list_node *trav_next;
-        do {
+        while (trav->next) {
             trav_next = trav->next;
             free_course_list_node(trav);
             trav = trav_next;
-        } while (trav_next);
+        }
         free(course_list);
     }
 }
