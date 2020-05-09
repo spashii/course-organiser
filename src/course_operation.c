@@ -8,6 +8,7 @@
 #include "util.h"
 
 void init_course_operation(){
+    printf("Loading courses....\n");
     load_course_list();
     make_course_index(COURSE_CODE);
 }

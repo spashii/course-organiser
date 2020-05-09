@@ -9,6 +9,7 @@
 #include "util.h"
 
 void init_exam_operation() {
+    printf("Loading exams....\n");
     load_exam_list();
     make_exam_index(EXAM_DATETIME);
 }

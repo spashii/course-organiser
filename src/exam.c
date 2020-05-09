@@ -47,9 +47,9 @@ void print_exam(struct exam *e) {
 
 void print_short_exam(struct exam *e) {
     if (e) {
-        printf("%s on %s in %s\n",
+        printf("%s on %s at %s\n",
                e->name,
-               get_datetime_format(e->datetime, "%d/%m at %I:%M%p"),
+               get_datetime_format(e->datetime, "%d/%m %I:%M%p"),
                e->location);
     }
 }
