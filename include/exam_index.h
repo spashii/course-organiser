@@ -1,13 +1,14 @@
 #ifndef _EXAM_INDEX_H_
 #define _EXAM_INDEX_H_
 
+#include "course.h"
 #include "exam.h"
 #include "exam_list.h"
 
 struct exam_index {
     // an array of struct exam pointers which 
     // we will use to store struct exam ptrs
-    struct exam **c;
+    struct exam **e;
     unsigned int size;
 };
 
@@ -23,5 +24,7 @@ int search_exam_index(struct exam *key, enum exam_field_name search_field, int l
 void make_exam_index(enum exam_field_name sort_by);
 
 struct exam* get_by_id_exam_index(long id_key);
+
+void print_exams_for_course(struct course *c);
 
 #endif

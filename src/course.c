@@ -18,7 +18,7 @@ struct course *init_course() {
 
 void print_course(struct course *c) {
     if (c) {
-        printf("\nID      : %ld\n", c->id);
+        // printf("\nID      : %ld\n", c->id);
         printf("Code    : %s\n", c->code);
         printf("Name    : %s\n", c->name);
         printf("Credits : %.1f\n", c->credit);

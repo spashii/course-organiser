@@ -34,14 +34,23 @@ struct exam *init_exam_by_course_code(char *code) {
 
 void print_exam(struct exam *e) {
     if (e) {
-        printf("\nID       : %ld\n", e->id);
-        printf("C_ID     : %ld\n", e->course_id);
-        printf("C_Code   : %s\n", get_course_code_exam(e));
-        printf("Name     : %s\n", e->name);
-        printf("Details  : %s\n", e->details);
-        printf("Location : %s\n", e->location);
-        printf("Time     : %s\n",
+        // printf("\nID            : %ld\n", e->id);
+        // printf("C_ID          : %ld\n", e->course_id);
+        printf("Course Code   : %s\n", get_course_code_exam(e));
+        printf("Name          : %s\n", e->name);
+        printf("Details       : %s\n", e->details);
+        printf("Location      : %s\n", e->location);
+        printf("Time          : %s\n",
                get_datetime_format(e->datetime, "%d/%m/%Y %I:%M%p"));
+    }
+}
+
+void print_short_exam(struct exam *e) {
+    if (e) {
+        printf("%s on %s in %s\n",
+               e->name,
+               get_datetime_format(e->datetime, "%d/%m at %I:%M%p"),
+               e->location);
     }
 }
 

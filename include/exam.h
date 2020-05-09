@@ -25,6 +25,7 @@ struct exam {
 struct exam *init_exam(struct course *c);
 struct exam *init_exam_by_course_code(char *code);
 void print_exam(struct exam *e);
+void print_short_exam(struct exam *e);
 struct exam *set_exam(struct exam *e, char name[], char details[], char location[], time_t datetime);
 struct exam *input_exam(struct exam *e);
 char *get_course_code_exam(struct exam *e);
