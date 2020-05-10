@@ -12,6 +12,7 @@ void search_course_menu();
 void exam_menu();
 void display_all_exams_menu();
 void display_active_exams_menu();
+void display_course_specific_exam_menu();
 void display_exam_menu(int index);
 void info_menu();
 

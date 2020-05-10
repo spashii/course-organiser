@@ -37,7 +37,8 @@ void load_exam_list() {
     init_exam_list();
     FILE *db = open_db(EXAM_DB, READ);
     if (db && exam_list) {
-        init_info();
+        load_info();
+        reset_exam_count();
         struct exam *temp = init_exam(NULL);
         while (fread(temp, sizeof(struct exam), 1, db)) {
             insert_exam_list(temp);
@@ -80,7 +81,8 @@ void save_exam_list() {
     copy_db(EXAM_DB_BKP, EXAM_DB, OVERWRITE);
     FILE *db = open_db(EXAM_DB, OVERWRITE);
     if (db && exam_list) {
-        init_info();
+        load_info();
+        reset_exam_count();
         struct exam_list_node *trav = exam_list->head;
         while (trav) {
             if (fwrite(trav->data, sizeof(struct exam), 1, db)) {

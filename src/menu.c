@@ -10,9 +10,11 @@
 #include "exam_index.h"
 #include "exam_operation.h"
 #include "util.h"
+#include "info.h"
 
 struct course_index *course_index;
 struct exam_index *exam_index;
+struct info APP_INFO;
 
 void main_menu() {
     int control;
@@ -33,7 +35,6 @@ void main_menu() {
         nl();
         printf("Your Choice : ");
         scanf("%d", &control);
-        // control = 3;
         flush_stdin_buffer();
         switch (control) {
             case 1:
@@ -43,7 +44,7 @@ void main_menu() {
                 exam_menu();
                 break;
             case 3:
-                display_exam_course_menu(course_index->c[10]);
+                info_menu();
                 break;
             case 4:
                 return;
@@ -161,7 +162,7 @@ void display_course_menu(int index) {
                 break;
             case 3:
                 edit_course_operation(course_index->c[index]);
-                break;
+                return;
             case 4:
                 printf("Are you sure you want to delete this course(y/n)? ");
                 control = getchar();
@@ -293,9 +294,9 @@ void exam_menu() {
         nl();
         printf("MENU\n");
         printf("1. Display Active Exams\n");
-        // printf("2. Display Exams for a Specific Course");
-        printf("2. Display All Exams\n");
-        printf("3. Return\n");
+        printf("2. Display Exams for a Specific Course\n");
+        printf("3. Display All Exams\n");
+        printf("4. Return\n");
         nl();
         printf("Your Choice : ");
         scanf("%d", &control);
@@ -305,9 +306,11 @@ void exam_menu() {
                 display_active_exams_menu();
                 break;
             case 2:
+                display_course_specific_exam_menu();
+            case 3:
                 display_all_exams_menu();
                 break;
-            case 3:
+            case 4:
                 return;
             default:
                 printf("Invalid option. Press enter to continue.");
@@ -382,6 +385,50 @@ void display_active_exams_menu() {
                 getchar();
                 break;
             }
+        }
+    }
+}
+
+void display_course_specific_exam_menu() {
+    int control;
+    while (1) {
+        clear_screen();
+        nl();
+        printf("COURSE ORGANISER - EXAM MENU");
+        nl();
+        print_datetime(get_time());
+        nl();
+        int i;
+        struct course *c;
+
+        printf("\nSELECT COURSE\n\n");
+        printf(
+            "------------------------------------------------------------------"
+            "--------------------------\n");
+        printf("| %-2s | %-16s | %-64s |\n", "NO", "COURSE CODE",
+               "COURSE NAME");
+        printf(
+            "------------------------------------------------------------------"
+            "--------------------------\n");
+        for (i = 0; i < course_index->size; i++) {
+            c = course_index->c[i];
+            printf("| %-2d | %-16s | %-64s |\n", i + 1, c->code, c->name);
+        }
+        printf(
+            "------------------------------------------------------------------"
+            "--------------------------\n");
+        printf("\nSelect a course(1-%d) or press '0' to continue : ",
+               course_index->size);
+        scanf("%d", &control);
+        flush_stdin_buffer();
+        if (control == 0) {
+            break;
+        } else if (control > 0 && control <= course_index->size) {
+            display_exam_course_menu(course_index->c[control - 1]);
+        } else {
+            printf("\nInvaild option. Press enter to continue.\n");
+            getchar();
+            break;
         }
     }
 }
@@ -502,4 +549,17 @@ void display_exam_menu(int index) {
     }
 }
 
-void info_menu() {}
+void info_menu() {
+    clear_screen();
+        nl();
+        printf("COURSE ORGANISER - INFO");
+        nl();
+        print_datetime(get_time());
+        nl();
+        load_info();
+        // printf("USERNAME : %s", APP_INFO.username);
+        printf("\nCOURSES IN DATABASE : %u\n", APP_INFO.course_count);
+        printf("EXAMS IN DATABASE : %u\n", APP_INFO.exam_count);
+        printf("\nPress enter to continue.");
+        getchar();
+}

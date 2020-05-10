@@ -37,7 +37,8 @@ void load_course_list() {
     init_course_list();
     FILE *db = open_db(COURSE_DB, READ);
     if (db && course_list) {
-        init_info();
+        load_info();
+        reset_course_count();
         struct course *temp = init_course();
         while (fread(temp, sizeof(struct course), 1, db)) {
             insert_course_list(temp);
@@ -78,7 +79,8 @@ void save_course_list() {
     copy_db(COURSE_DB_BKP, COURSE_DB, OVERWRITE);
     FILE *db = open_db(COURSE_DB, OVERWRITE);
     if (db && course_list) {
-        init_info();
+        load_info();
+        reset_course_count();
         struct course_list_node *trav = course_list->head;
         while (trav) {
             if (fwrite(trav->data, sizeof(struct course), 1, db)) {

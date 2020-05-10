@@ -22,13 +22,17 @@ void load_info() {
     }
 }
 
+void reset_course_count() { APP_INFO.course_count = 0; }
+
 void inc_course_count() { APP_INFO.course_count += 1; }
 
 void dec_course_count() { APP_INFO.course_count -= 1; }
 
-void inc_exam_count() {APP_INFO.exam_count += 1;}
+void reset_exam_count() { APP_INFO.exam_count = 0; }
 
-void dec_exam_count() {APP_INFO.exam_count += 1;}
+void inc_exam_count() { APP_INFO.exam_count += 1; }
+
+void dec_exam_count() { APP_INFO.exam_count += 1; }
 
 void save_info() {
     FILE *i = open_db(INFO_DB, OVERWRITE);

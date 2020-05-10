@@ -10,8 +10,10 @@ extern struct info APP_INFO;
 
 void init_info();
 void load_info();
+void reset_course_count();
 void inc_course_count();
 void dec_course_count();
+void reset_exam_count();
 void inc_exam_count();
 void dec_exam_count();
 void save_info();
