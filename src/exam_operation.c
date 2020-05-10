@@ -1,6 +1,7 @@
 #include "exam_operation.h"
 
 #include <stdio.h>
+#include <malloc.h>
 
 #include "course_index.h"
 #include "exam.h"
@@ -38,8 +39,10 @@ void delete_exam_operation(struct exam *e) {
 }
 
 void edit_exam_operation(struct exam *e) {
-    struct course *new_c = get_by_id_course_index(e->id);
-    struct exam *new = input_exam(init_exam(new_c));
+    long course_id = e->course_id;
+    struct course* temp = init_course();
+    temp->id = course_id;
+    struct exam *new = input_exam(init_exam(temp));
     delete_in_exam_list(e->id);
     while (!is_unique_exam_list(new)) {
         printf("\nEnter exam details again:\n");
@@ -47,6 +50,7 @@ void edit_exam_operation(struct exam *e) {
     }
     insert_exam_list(new);
     make_exam_index(EXAM_DATETIME);
+    free(temp);
 }
 
 void insert_exam_operation(struct course *c) {

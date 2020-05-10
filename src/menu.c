@@ -2,6 +2,7 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "course_index.h"
 #include "course_operation.h"
@@ -32,6 +33,7 @@ void main_menu() {
         nl();
         printf("Your Choice : ");
         scanf("%d", &control);
+        // control = 3;
         flush_stdin_buffer();
         switch (control) {
             case 1:
@@ -41,7 +43,7 @@ void main_menu() {
                 exam_menu();
                 break;
             case 3:
-                // info_menu();
+                display_exam_course_menu(course_index->c[10]);
                 break;
             case 4:
                 return;
@@ -64,9 +66,9 @@ void course_menu() {
         display_upcoming_exams(5);
         nl();
         printf("MENU\n");
-        printf("1. Manage Course(Display, View Exams, Edit, Delete)\n");
-        printf("2. Add Course\n");
-        printf("3. Search Course\n");
+        printf("1. Search Course\n");
+        printf("2. Manage Course(Display, View Exams, Edit, Delete)\n");
+        printf("3. Add Course\n");
         printf("4. Return\n");
         nl();
         printf("Your Choice : ");
@@ -74,14 +76,15 @@ void course_menu() {
         flush_stdin_buffer();
         switch (control) {
             case 1:
-                display_all_courses_menu();
+                search_course_menu();
                 break;
             case 2:
-                insert_course_operation();
                 display_all_courses_menu();
                 break;
+
             case 3:
-                search_course_menu();
+                insert_course_operation();
+                display_all_courses_menu();
                 break;
             case 4:
                 return;
@@ -196,20 +199,8 @@ void display_exam_course_menu(struct course *c) {
             getchar();
             return;
         } else {
-            int *exam_indices = calloc(count, sizeof(int));
             int i;
-            int k = count;
-            for (i = 0; i < exam_index->size && k>0; i++) {
-                if (exam_index->e[i]->course_id == c->id) {
-                    exam_indices[i] = 1;
-                    k--;
-                }
-                else {
-                    exam_indices[i] = 0;
-                }
-            }
             struct exam *e;
-            
             printf(
                 "--------------------------------------------------------------"
                 "------\n");
@@ -218,45 +209,37 @@ void display_exam_course_menu(struct course *c) {
             printf(
                 "--------------------------------------------------------------"
                 "------\n");
-            k = 0;
+            int k = 0;
             for (i = 0; i < exam_index->size; i++) {
-                if (exam_indices[i] == 1) {
-                    e = exam_index->e[i];
-                    printf("| %-2d | %-16s | %-10s | %-8s | %-16s |\n", k + 1,
+                e = exam_index->e[i];
+                if (e->course_id == c->id) {
+                    printf("| %-2d | %-16s | %-10s | %-8s | %-16s |\n", ++k,
                            e->name,
                            get_datetime_format(e->datetime, "%d/%m/%Y"),
-                           get_datetime_format(e->datetime, "%I:%M%p"),
+                           get_datetime_format(e->datetime, "%I:%M %p"),
                            e->location);
-                    k++;
                 }
             }
             printf(
                 "--------------------------------------------------------------"
                 "------\n");
-            printf("HERE3");
-            printf("\nSelect an exam(1-%d) or press '0' to continue : ", count);
-            // scanf(" %d", &control);
-            control =2 ;
-            printf("HERE4");
-            // flush_stdin_buffer();
-            printf("HERE2");
+            printf("\nSelect an exam(1-%d) or press '0' to continue : ", k);
+            scanf("%d", &control);
+            flush_stdin_buffer();
             if (control == 0) {
-                // free(exam_indices);
                 return;
-            }
-            if (control > 0 && control <= count) {
-                int i = 0;
-                while (count) {
-                    if (exam_index->e[i]->course_id == c->id) {
-                        count--;
-                        i++;
+            } else if (control > 0 && control <= k) {
+                for (i = 0; i < exam_index->size; i++) {
+                    e = exam_index->e[i];
+                    if (e->course_id == c->id) {
+                        control--;
+                        if (control == 0) {
+                            break;
+                        }
                     }
                 }
-                printf("HERE");
-                display_exam_menu(i - 1);
-                break;
-            }
-            else{
+                display_exam_menu(i);
+            } else {
                 printf("\nInvaild option. Press enter to continue.\n");
                 getchar();
                 break;
@@ -277,7 +260,7 @@ void search_course_menu() {
         char *code_key;
         printf("Enter Course Code? ");
         code_key = s_readline(16);
-        if (!code_key) {
+        if (strlen(code_key) == 0) {
             return;
         }
         int index = search_course_operation(code_key);
@@ -310,7 +293,7 @@ void exam_menu() {
         nl();
         printf("MENU\n");
         printf("1. Display Active Exams\n");
-        // printf("3. Display Exams for a Specific Course");
+        // printf("2. Display Exams for a Specific Course");
         printf("2. Display All Exams\n");
         printf("3. Return\n");
         nl();
@@ -350,9 +333,9 @@ void display_active_exams_menu() {
             getchar();
             return;
         } else {
-            printf("\nLIST OF ACTIVE EXAMS\n\n");
-            int i, count = 1;
+            int i;
             struct exam *e;
+            printf("\nLIST OF ACTIVE EXAMS\n\n");
             printf(
                 "--------------------------------------------------------------"
                 "---------------------"
@@ -363,30 +346,41 @@ void display_active_exams_menu() {
                 "--------------------------------------------------------------"
                 "-------------------"
                 "------\n");
+            int k = 0;
             for (i = 0; i < exam_index->size; i++) {
                 e = exam_index->e[i];
                 if (is_active_exam(e)) {
                     printf("| %-2d | %-16s | %-16s | %-10s | %-8s | %-16s |\n",
-                           count, get_course_code_exam(e), e->name,
+                           ++k, get_course_code_exam(e), e->name,
                            get_datetime_format(e->datetime, "%d/%m/%Y"),
                            get_datetime_format(e->datetime, "%I:%M%p"),
                            e->location);
-                    count++;
                 }
             }
             printf(
                 "--------------------------------------------------------------"
                 "--------------------"
                 "-----\n");
-            printf("\nSelect an exam(1-%d) or press '0' to continue : ", count);
+            printf("\nSelect an exam(1-%d) or press '0' to continue : ", k);
             scanf("%d", &control);
             flush_stdin_buffer();
             if (control == 0) {
                 break;
-            } else if (control > 0 && control <= exam_index->size) {
-                display_exam_menu(control - 1);
+            } else if (control > 0 && control <= k) {
+                for (i = 0; i < exam_index->size; i++) {
+                    e = exam_index->e[i];
+                    if (is_active_exam(e)) {
+                        control--;
+                        if (control == 0) {
+                            break;
+                        }
+                    }
+                }
+                display_exam_menu(i);
             } else {
-                continue;
+                printf("\nInvaild option. Press enter to continue.\n");
+                getchar();
+                break;
             }
         }
     }
@@ -413,21 +407,30 @@ void display_all_exams_menu() {
             int i;
             struct exam *e;
             printf(
-                "--------------------------------------------------------------"
+                "--------------------------------------------------"
+                "----"
+                "--------"
                 "-"
                 "---------------------------------\n");
-            printf("| %-2s | %-16s | %-16s | %-10s | %-8s | %-16s | %-6s |\n",
-                   "NO", "COURSE NAME", "EXAM", "DATE", "TIME", "LOCATION",
-                   "STATUS");
             printf(
-                "--------------------------------------------------------------"
+                "| %-2s | %-16s | %-16s | %-10s | %-8s | %-16s | "
+                "%-6s "
+                "|\n",
+                "NO", "COURSE NAME", "EXAM", "DATE", "TIME", "LOCATION",
+                "STATUS");
+            printf(
+                "--------------------------------------------------"
+                "----"
+                "--------"
                 "-"
                 "---------------------------------\n");
             for (i = 0; i < exam_index->size; i++) {
                 e = exam_index->e[i];
                 if (e->course_id)
                     printf(
-                        "| %-2d | %-16s | %-16s | %-10s | %-8s | %-16s | %-6s "
+                        "| %-2d | %-16s | %-16s | %-10s | %-8s | "
+                        "%-16s "
+                        "| %-6s "
                         "|\n",
                         i + 1, get_course_code_exam(e), e->name,
                         get_datetime_format(e->datetime, "%d/%m/%Y"),
@@ -435,11 +438,15 @@ void display_all_exams_menu() {
                         e->location, is_active_exam(e) ? "ACTIVE" : "");
             }
             printf(
-                "--------------------------------------------------------------"
+                "--------------------------------------------------"
+                "----"
+                "--------"
                 "-"
                 "---------------------------------\n");
-            printf("\nSelect an exam(1-%d) or press '0' to continue : ",
-                   exam_index->size);
+            printf(
+                "\nSelect an exam(1-%d) or press '0' to continue "
+                ": ",
+                exam_index->size);
             scanf("%d", &control);
             flush_stdin_buffer();
             if (control == 0) {
@@ -475,24 +482,18 @@ void display_exam_menu(int index) {
         flush_stdin_buffer();
         switch (control) {
             case 1:
-                // insert_exam_operation(course_index->c[index]);
-                break;
+                edit_exam_operation(exam_index->e[index]);
+                return;
             case 2:
-                // display_exam_course_menu(course_index->c[index]);
-                break;
+                printf("Are you sure you want to delete this exam(y/n)? ");
+                control = getchar();
+                if (control == (int)'y' || control == (int)'Y') {
+                    delete_exam_operation(exam_index->e[index]);
+                }
+                printf("\nPress enter to continue...");
+                getchar();
+                return;
             case 3:
-                // edit_course_operation(course_index->c[index]);
-                return;
-            case 4:
-                // printf("Are you sure you want to delete this course(y/n)? ");
-                // control = getchar();
-                // if (control == (int)'y' || control == (int)'Y') {
-                //     delete_course_operation(course_index->c[index]);
-                // }
-                // printf("\nPress enter to continue...");
-                // getchar();
-                return;
-            case 5:
                 return;
             default:
                 printf("Invalid option. Press enter to continue.");
