@@ -1,6 +1,6 @@
 #include "course_index.h"
 
-#include <malloc.h>
+//#include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
 

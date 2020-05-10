@@ -1,6 +1,6 @@
 #include "info.h"
 
-#include <malloc.h>
+//#include <malloc.h>
 #include <stdio.h>
 
 #include "file.h"
