@@ -1,7 +1,7 @@
 #include "exam_operation.h"
 
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "course_index.h"
 #include "exam.h"
