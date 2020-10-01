@@ -15,4 +15,5 @@ int main() {
     main_menu();
     save_exam_operation();
     save_course_operation();
+    return 0;
 }
